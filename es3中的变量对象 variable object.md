@@ -1,0 +1,213 @@
+# es中的变量对象 variable object
+
+通常我们在代码定义了一个变量后，我们会希望在特定的地方可以访问到它。那么什么时候这个变量可以被正确访问到，什么时候访问不到？如果能够访问到，是如何访问到的呢？
+
+回答这些问题不可避免的牵涉到了js中的两个概念，执行环境和变量对象。这里讨论变量对象。
+
+### 1. 定义
+
+变量对象是跟执行环境紧密相关的一个概念，可以认为变量对象是执行环境的一个属性。如下：
+
+> ```javascript
+> activeExecutionContext = {
+>   VO: {
+>     // context data (var, FD, function arguments)
+>   }
+> };
+> ```
+
+变量对象存储了以下：
+
+1. arguments对象，这个对象有callee/length属性，以及键值为整数的函数实参。
+2. 声明的变量(通过var, let, const)。
+3. 函数声明。
+4. 函数的命名参数(如果是函数的执行环境)。
+
+### 2. 作用
+
+变量对象上的键值可以在当前执行环境的任何地方访问，这也产生了常见的声明提升问题，以及无块级作用域。
+
+可以将变量对象的改动分为两个阶段来分析:
+
+1. 进入执行环境阶段，此时变量对象被添加以下键：
+
+   1. 函数的命名参数(真实传递的参数值为传递的值，未传递的命名参数值为undefined)
+   2. 声明的函数，(属性名是声明函数名，值是这个函数的引用)。如果变量对象上已有相同名字的键，**则将该键的值改为对这个对象的引用(即便这个键是函数的命名参数)**。
+   3. 声明的变量。(如果变量对象已有相同名字的键，则声明的变量不影响变量对象)
+
+   这个阶段也是所谓‘声明提升’发生的阶段，看如下代码：
+
+   ```javascript
+   console.log(x); // undefined, not 'x is not defined' ant throw error.
+   var x = 10;
+   ```
+
+   因为x的声明被提升，变量对象上有了键名为x的属性，所以输出undefined。否则就会跑出异常。
+
+   而更值得关注的是，在上述三种类型中，变量对象上对应的键值会有优先级的区别。如下例所示：
+
+   > ```javascript
+   > function test(x) {
+   >   console.log(x); // function
+   >   var x = 10;
+   >   console.log(x); // 10
+   >   x = 20;
+   >   function x() {}
+   >   console.log(x); // 20
+   > }
+   > test(5);// 输出 [Function: x], 10, 20.
+   > ```
+
+   即，当遇到函数声明function x() {}后，x会覆盖变量对象上对应的键值。而变量声明则不会影响同名的键值。
+
+2. 代码执行阶段，根据代码流程改变相应的值。
+
+
+
+总结：
+
+1. 变量对象就是存储执行环境中可访问变量/函数的对象，可以认为是执行环境(execution context)的一个属性。
+2. 变量对象的赋值影响了执行环境内变量的访问及其值的变化。
+
+-end-
+
+
+
+但是，在ES5中，变量对象的概念被*语法环境*所代替。
+
+对于全局执行环境来说，可以通过全局对象来访问(它自身就是全局执行环境的变量对象)。
+
+变量对象
+
+> If variables are related with the execution context, it should know where its data are stored and how to get them. This mechanism is called a *variable object*.
+>
+> > A *variable object (in abbreviated form — VO)* is a special object related with an execution context and which stores:
+> >
+> > variables (`var`, VariableDeclaration);function declarations (FunctionDeclaration, in abbreviated form FD);and function formal parameters
+> >
+> > >  Notice, in ES5 the concept of *variable object* is replaced with *lexical environments* model, which detailed description can be found in the [appropriate chapter](http://dmitrysoshnikov.com/ecmascript/es5-chapter-3-2-lexical-environments-ecmascript-implementation/).
+
+> VO is a property of an execution context
+
+> When we declare a variable or a function, there is nothing else as creation of the new property of the VO with the name and value of our variable
+
+> But at implementation level (and specification) the variable object is an abstract essence. Physically, in concrete execution contexts, VO is named differently and has different initial structure.
+
+1. GLOBAL对象的变量对象(variable object):
+
+> At creation the global object is initialized with such properties as `Math`, `String`, `Date`, `parseInt` etc., and also by additional objects among which can be the reference to the global object itself — for example, in BOM, `window` property of the global object refers to global object (however, not in all implementations):
+
+> When referencing to properties of global object the prefix is usually omitted, because global object is not accessible directly by name. However, to get access to it is possible via [this value in the global context](http://dmitrysoshnikov.com/ecmascript/chapter-3-this/#this-value-in-the-global-code), and also through recursive references to itself, for example `window` in BOM, therefore write simply:
+
+2. 函数中的VO:
+
+函数中的vo不能直接访问，也被称为**活动对象(AO)**。
+
+> Regarding the execution context of functions — there VO is inaccessible directly, and its role plays so-called an **activation object (in abbreviated form — AO)**.
+
+AO在进入函数执行环境时创建，初始化时就有了arguments属性，值是这个函数的Argumentsd对象.
+
+> An *activation object* is created on entering the context of a function and initialized by property `arguments` which value is the *Arguments object*:
+>
+> > *Arguments* object is a property of the activation object. It contains the following properties:
+> >
+> > - *callee* — the reference to the current function;
+> >
+> > - *length* — quantity of **real passed** arguments;
+> >
+> > - *properties-indexes* (integer, converted to string) which values are the values of function’s arguments (from left to right in the list of arguments). Quantity of these properties-indexes == *arguments.length*. **Values of properties-indexes of the *arguments* object and present (really passed) formal parameters are *shared*.**
+> >
+> > - > `however, for not passed argument z,`
+> >   >
+> >   > `  ``// related index-property of the arguments`
+> >   >
+> >   > `  ``// object is not shared`
+
+> In ES5 the concept of *activation object* is also replaced with common and single model of [lexical environments](http://dmitrysoshnikov.com/ecmascript/es5-chapter-3-2-lexical-environments-ecmascript-implementation/).
+
+函数表达式不会影响函数的变量对象:
+
+> > ```javascript
+> > function test(a, b) {
+> >   var c = 10;
+> >   function d() {}
+> >   var e = function _e() {};
+> >   (function x() {});
+> > }
+> >   
+> > test(10); // call
+> > ```
+> >
+> > ```javascript
+> > AO(test) = {
+> >   a: 10,
+> >   b: undefined,
+> >   c: undefined,
+> >   d: <reference to FunctionDeclaration "d">
+> >   e: undefined
+> > };
+> > ```
+> >
+> > Notice, that AO does not contain function `x`. This is because `x` is not a function declaration but the *function-expression (FunctionExpression, in abbreviated form FE)* which *does not affect on VO*.
+> >
+> > However, function `_e` is also a function-expression, but as we will see below, because of assigning it to the variable `e`, it becomes accessible via the `e` name. The difference of a `FunctionDeclaration` from the `FunctionExpression` is in detail discussed in [Chapter 5. Functions](http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/).
+
+### 变量对象的属性值与代码的执行阶段有关，可以将执行阶段分为两步：
+
+1. #### 进入执行环境
+
+   在这一步，变量对象会将以下设为自己的属性：
+
+   1. 函数的命名参数(真实传递的参数值为传递的值，未传递的命名参数值为undefined)
+   2. 声明的函数，(属性名是声明函数名，值是这个函数的引用)。如果变量对象上已有相同名字的键，**则将该键的值改为对这个对象的引用(即便这个键是函数的命名参数)**。
+   3. 声明的变量。(如果变量对象已有相同名字的键，则声明的变量不影响变量对象)
+
+js中的变量和函数提升并不是赋值提升，仅仅是声明提升。
+
+> For those who test these examples in console of some debug tool, e.g. *Firebug*: notice, that *Firebug* also *uses eval* to execute your code from the console. So there *var*s also do not have `{DontDelete}` and can be deleted.
+
+在一些js引擎中(如spidermonkey和rhino)，函数有一个属性\__parent__,这个属性指向该函数被创建的执行环境的活动对象(或全局变量对象)上。
+
+> Example (SpiderMonkey, Rhino):
+>
+> ```Javascript
+> var global = this;
+> var a = 10;
+>   
+> function foo() {}
+>   
+> alert(foo.__parent__); // global
+>   
+> var VO = foo.__parent__;
+>   
+> alert(VO.a); // 10
+> alert(VO === global); // true
+> ```
+
+然而，在spidermonkey中，通过这个属性访问活动对象(非全局)总会返回null或者全局对象。但在Rhino中可以通过它访问任何活动对象：
+
+> ```javascript
+> var global = this;
+> var x = 10;
+>   
+> (function foo() {
+>   
+>   var y = 20;
+>   
+>   // the activation object of the "foo" context
+>   var AO = (function () {}).__parent__;
+>   
+>   print(AO.y); // 20
+>   
+>   // __parent__ of the current activation
+>   // object is already the global object,
+>   // **i.e. the special chain of variable objects is formed,
+>   // so-called, a scope chain **
+>   print(AO.__parent__ === global); // true
+>   
+>   print(AO.__parent__.x); // 10
+>   
+> })();
+> ```
+
+注意，上面通过\__parent__属性实现了**作用域链**的访问。
