@@ -63,8 +63,19 @@ foo.bar(); // Reference, OK => foo
 (false || foo.bar)(); // global?
 (foo.bar, foo.bar)(); // global?
 */
+/*
 (function foo(bar) {
   console.log(this === global);
 
   !bar && foo(1); // "should" be special object, but always (correct) global
 })(); // global
+*/
+
+var a = new Number(4);
+const b = {};
+console.log(b.toString());
+console.log(a.valueOf());
+a.test = function() {
+  console.log(this);
+};
+a.test();
