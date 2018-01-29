@@ -1,0 +1,70 @@
+/*
+var foo = { x: 10 };
+
+var bar = {
+  x: 20,
+  test: function() {
+    console.log(this === bar); // true
+    console.log(this.x); // 20
+
+    // this = foo; // error, can't change this value
+
+    console.log(this); // if there wasn't an error, then would be 10, not 20
+  }
+};
+
+// on entering the context this value is
+// determined as "bar" object; why so - will
+// be discussed below in detail
+
+bar.test(); // true, 20
+
+foo.test = bar.test;
+
+// however here this value will now refer
+// to "foo" – even though we're calling the same function
+
+foo.test(); // false, 10
+*/
+/*
+function foo() {
+  console.log(this.bar);
+}
+
+var x = {};
+var y = {};
+var bar = 30;
+x.test = foo;
+y.test = foo;
+
+x.test(); // 10
+y.test(); // 20
+*/
+/*
+function A() {
+  console.log(this); // newly created object, below - "a" object
+  this.x = 10;
+}
+
+var a = new A();
+console.log(a); // 10
+*/
+/*
+var foo = {
+  bar: function() {
+    console.log(this === global);
+  }
+};
+
+foo.bar(); // Reference, OK => foo
+foo.bar(); // Reference, OK => foo
+
+(foo.bar = foo.bar)(); // global?
+(false || foo.bar)(); // global?
+(foo.bar, foo.bar)(); // global?
+*/
+(function foo(bar) {
+  console.log(this === global);
+
+  !bar && foo(1); // "should" be special object, but always (correct) global
+})(); // global
