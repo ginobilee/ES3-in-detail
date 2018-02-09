@@ -79,13 +79,13 @@ this的值与内部类型`Reference`类有关。
 
 >  The general rule of determination of `this` value in a function context sounds as follows:
 >
-> > The value of `this` in a function context is provided *by the caller and determined by the current form of a call expression* (how the function call is written syntactically).
-> >
-> > If on the left hand side from the call parentheses `( ... )`, there is a value of `Reference` type then `this` value is set to the *base object* of this value of `Reference` type.
-> >
-> > *In all other cases *(i.e. with *any other* value type which is distinct from the `Reference` type), `this` value is always set to `null`. But since there is no any sense in `null` for `this` value, it is *implicitly* converted to *global object*.
+>  > The value of `this` in a function context is provided *by the caller and determined by the current form of a call expression* (how the function call is written syntactically).
+>  >
+>  > If on the left hand side from the call parentheses `( ... )`, there is a value of `Reference` type then `this` value is set to the *base object* of this value of `Reference` type.
+>  >
+>  > *In all other cases *(i.e. with *any other* value type which is distinct from the `Reference` type), `this` value is always set to `null`. But since there is no any sense in `null` for `this` value, it is *implicitly* converted to *global object*.
 >
-> Now we can precisely tell, why the same function activated with *different forms of a call expression*, has also different `this` values — the answer is in different intermediate values of type `Reference`.
+>  Now we can precisely tell, why the same function activated with *different forms of a call expression*, has also different `this` values — the answer is in different intermediate values of type `Reference`.
 
 4. ()左边非Reference类时的this
 
@@ -165,3 +165,11 @@ catch也是同样的情况。但是在es5中，catch内的this已经被强制改
 #### 手动设置this
 
 使用apply或call方法(以及bind方法)。
+
+
+
+#### ES6
+
+在es6中`this`变成了词法环境的属性(也就是es3中活动对象的属性)，这时为了实现箭头函数中的词法`this`，即箭头函数中是从父环境中继承的。
+
+> NOTE: In ES6 this actually became a property of a lexical environment, i.e. property of the variable object in ES3 terminology. This is done to support arrow functions, which have lexical this, which they inherit from parent contexts.
