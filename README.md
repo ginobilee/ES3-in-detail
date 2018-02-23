@@ -1,4 +1,4 @@
-# ES3-in-detail
-My ES3 notes
+# Blogs 
+mostly reading notes.
 
-学习ES的读书笔记，主要是Dmitry Soshnikov的ECMA-262-3 in detail系列文章。
+学习ES的读书笔记，目前主要是Dmitry Soshnikov的ECMA-262-3 in detail系列文章。
