@@ -14,6 +14,11 @@ var baz = Object.defineProperty({}, "bar", {
   set: function(v) {}
 });
 */
+var foo = Object.defineProperty({}, "x", {
+  value: 10
+});
+foo.x = 20; // TypeError in 'use strict'
+console.log(foo.x);
 
 var _x = 10;
 
