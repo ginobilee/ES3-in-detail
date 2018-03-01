@@ -1,5 +1,0 @@
-> One important note is that the this value is a property of the execution context, but not a property of the variable object. This feature is very important, because in contrast with variables, this value never participates in identifier resolution process. I.e. when accessing this in a code, its value is taken directly from the execution context and without any scope chain lookup. The value of this is determined only once, on entering the context.
-
-> NOTE: In ES6 this actually became a property of a lexical environment, i.e. property of the variable object in ES3 terminology. This is done to support arrow functions, which have lexical this, which they inherit from parent contexts.
-
-> In the global context, a this value is the global object itself (that means, this value here equals to variable object):
