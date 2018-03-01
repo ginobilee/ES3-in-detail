@@ -15,7 +15,6 @@ bar(); // 0
 foo = 9;
 bar(); // this won't change, since bar has already been referd to 'the' function.
 */
-/*
 var foo = {
   bar: (function(x) {
     console.log("bar");
@@ -25,7 +24,6 @@ var foo = {
 console.log("1");
 console.log(foo.bar); // 'yes'
 console.log(foo.bar);
-*/
 /*
 1,
   (function() {
@@ -89,6 +87,8 @@ function foo() {
 }
 foo();
 */
+
+/*
 // function declaration in block
 if (true) {
   function foo() {
@@ -101,3 +101,4 @@ if (true) {
 }
 
 foo(); // 0 in both Node.js and Chrome.
+*/
