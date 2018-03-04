@@ -94,6 +94,8 @@ Settimers vs setimmediate
 >
 > 
 
+> the nextTickQueue will be processed after the current operation completes, regardless of the current phase of the event loop.
+
 
 
 ## `process.nextTick()` vs `setImmediate()`
