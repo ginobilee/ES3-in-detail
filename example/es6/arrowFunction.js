@@ -22,3 +22,15 @@ let qux = foo.qux;
 console.log(qux());
 // 可以将内部这样解释：解析出当前的this后，将它作为属性放在当前运行环境的词法环境对象上。
 // 当调用箭头函数时，该执行环境不会产生this, 因此将在执行环境作用域链的上一级环境的词法环境上查找this，找到的话就将该this值作为当前环境的中this值。
+
+const person = {
+  namea: "menglinghua",
+  say: function() {
+    return () => {
+      console.log(this.namea);
+    };
+  }
+};
+person.say()();
+let say = person.say;
+say()();

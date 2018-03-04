@@ -1,0 +1,9 @@
+Immutable
+Immutable Data就是一旦被创建，就不能更改的数据，对Immutable Data对象进行修改添加或者删除操作，都会返回一个Immutable对象，实现的原理就是持久化数据结构。
+Immutable使用旧数据创建新数据时，要保证旧的数据可用但是不可变，同时为了避免将所有的节点都复制一遍带来的性能损耗，Immutable使用结构共享，即如果对象树中一个节点发生变化，只修改这个节点和它受影响的父节点
+
+Map 键值对的集合，对应于Object，ES6也有专门的Map对象
+List 有序可重复对象，对应于Array
+ArrayList 无序不可重复列表
+
+Immutable.is比较的是两个对象的hashCode或valueOf，由于immutable内部使用了trie数据接口来存储，只要两个对象的hashCode相等，值就是一样的，这样做的效率非常之高
