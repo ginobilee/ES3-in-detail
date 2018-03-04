@@ -1,4 +1,6 @@
 // 'let' won't hoist the variable.
-console.log(a);
+console.log(typeof a);
 
-let a = "aa";
+// let a = "aa";
+
+// const b
