@@ -1,0 +1,1 @@
+> 我们虽然无法像 SPA 那样把 index.html 缓存起来，但我们可以把他们共同的外壳 (App Shell) 剥离成独立路由，由 Service Worker 请求并缓存。之后拦截每次 HTML 请求都返回这个外壳，再进行前端渲染，就可以实现和 Skeleton 相同的效果了。

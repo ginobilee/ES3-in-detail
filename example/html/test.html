@@ -1,0 +1,82 @@
+<html>
+<head>
+    <style>
+        #searchBox{
+            position: relative;
+        }
+    </style> 
+</head>
+
+<body>
+    <div id='searchBox'>
+        <input id='input' />
+        <ul id='results' ></ul>
+    </div>
+   <script>
+        /* 
+          实现一个搜索框的智能提示功能，可自己mock一个获取提示数据的接口。
+          （如输入”电脑“，显示一个提示列表：电脑游戏 、电脑壁纸、电脑管家、电脑VPN）
+        */
+        window.onload = function() {
+          const datas = ['1', '2']
+          let input = document.getElementById('input'), searchResults = document.getElementById('results')
+          input.addEventListener('change', function(e) {
+            let v = e.target.value
+            // throttle(() => hint(v), 100, e.target)
+            hint(v)
+          })
+          const search = function(v) {
+              debugger
+            return new Promise((resolve, reject) => {
+              try{
+              // 实际中，这里会是一个异步操作
+                let results = datas.filter(d => d.indexOf(v) === 0)
+                resolve(results || [])
+              } catch (e) {
+                reject(e)
+              }
+            })
+          }
+          function hint(val){
+            // 根据val动态匹配数据库中字段，将以val开头的项返回
+            let fetchResults = search(val)
+            fetchResults.then((results) => {
+              if (results.length > 0) {
+                let fragment = document.createDocumentFragment()
+                results.forEach(r => {
+                  let li = document.createElement('li')
+                  li.textContent = r
+                  fragment.appendChild(li)
+                })
+                searchResults.appendChild(fragment)
+              }
+            })
+          }
+          function throttle(cb, timeout, thisObj) {
+            // 如果cb已经放在了待执行中，更新cb
+            // 连续多次调用throttle应该只运行一次，这样只能将cb放在throttle的外部？用一个闭包实现
+            // cbs里如何区分多个cb？直接indexof查询
+            // 如何保存每次cb的参数？
+            // 使cbs和tos存储次序一致, fire之后将cb和tos中的对应对象删除
+              var cbs = [], tos = []
+              return function (...args){
+                let index = cbs.indexOf(cb)
+                if (index === -1) {
+                       cbs.push(cb)
+                    let ti = setTimeout(() => {
+                      cb.apply(thisObj, args)
+                      tos.splice(index, 1) // index的值会不会发生变化？有点晕，用立即执行解决
+                    }, timeout)
+                    tos.push(ti)
+                } else {
+                  let ti = tos[index]
+                  clearTimeout(ti)
+                  ti =setTimeout(() => cb.apply(thisObj, args), timeout)
+                }
+              }
+          }
+        }
+    </script>
+</body>
+
+</html>

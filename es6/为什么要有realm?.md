@@ -1,0 +1,12 @@
+[Relationship between globals, Realms, and global environment records](https://esdiscuss.org/topic/relationship-between-globals-realms-and-global-environment-records)
+
+[what is a realm?](https://gist.github.com/dherman/7568885)
+# 规范的作者说：
+> A Realm record, is a ES6 specification artifact that represents the complete the execution context of ES code. It is not an object and does not have object-like semantics. It is at a lower layer of of the ES specification and using it the complete semantics of ES execution can be defined without depending upon any real metacircularity. As a specification device, an implementation is free to represent it any way it wants. Even as hidden state on an object. However, the ES spec. intentionally does not associate any of the realm record state with a global object. To do so would make it a requirement that pass a reference to a global object implies availability (at some level) of the rest of the realm state.
+
+ES environment records are used to define the semantics of lexical scoping within the ES language. One kind of environment record is a Global environment record that defines the global scope. Note that a global environment records includes more that just a reference to a global object. It also includes bindings for global lexical declarations (lets/const/class) which are global but not accessible as properties of the global objects. Environment records are also specification artifacts, it up to an implementation to decide how to represent environment records. Note that prior to ES5 the ES spec. actually required that objects be used at runtime to represent the scoping environment. This resulted in various undesirable (but technically required) quirks in the scoping semantics. ES5 eliminated these problems.
+
+The global object is an actual object. It has to have ES object semantics, so it is at a higher level of the design than either realm records and or environment record.
+
+# 其他人说：
+> Given that we now expose realms to JavaScript, fixing this mismatch between HTML and JavaScript seems somewhat more important (although really, HTML explicitly overriding JavaScript should be a big warning sign): ecmascript#1898 Otherwise, ***the Realm API cannot really fulfill its intended use as "<iframe> without DOM".**

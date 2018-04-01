@@ -23,5 +23,9 @@
 
 [参考](https://github.com/livoras/blog/issues/13)
 
+> The DOM is just one of the rendering environments React can render to, the other major targets being native iOS and Android views via React Native. (This is why "virtual DOM" is a bit of a misnomer.)
 
+The reason it can support so many targets is because React is designed so that reconciliation and rendering are separate phases. The reconciler does the work of computing which parts of a tree have changed; the renderer then uses that information to actually update the rendered app.
+
+This separation means that React DOM and React Native can use their own renderers while sharing the same reconciler, provided by React core.
 

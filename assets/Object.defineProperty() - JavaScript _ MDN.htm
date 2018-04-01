@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<!-- saved from url=(0102)https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty -->
+<html lang="zh-CN" dir="ltr" class="" data-ffo-opensans="true" data-ffo-zillaslab="false"><head prefix="og: http://ogp.me/ns#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <script>(function(d) { d.className = d.className.replace(/\bno-js/, ''); })(document.documentElement);</script>
+  <title>Object.defineProperty() - JavaScript | MDN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+    <link rel="home" href="https://developer.mozilla.org/zh-CN/">
+    <link rel="license" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#license">
+  
+
+  
+    
+    
+
+    <link href="./Object.defineProperty() - JavaScript _ MDN_files/mdn.8d8694e1694c.css" rel="stylesheet" type="text/css">
+
+    
+  
+
+    <link href="./Object.defineProperty() - JavaScript _ MDN_files/wiki.ff24ef8c87c1.css" rel="stylesheet" type="text/css">
+
+
+    
+
+  <link href="./Object.defineProperty() - JavaScript _ MDN_files/locale-zh-CN.f6594de96c23.css" rel="stylesheet" type="text/css">
+
+  
+    <script type="text/javascript" src="./Object.defineProperty() - JavaScript _ MDN_files/mozilla-dnthelper.3936bd979b1d.js" charset="utf-8"></script>
+    
+
+<script type="text/javascript">
+    // only load GA if DNT is not enabled
+    if (Mozilla && !Mozilla.dntEnabled()) {
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-36116321-5', 'mozilla.org');
+        ga('set', 'anonymizeIp', true);
+
+        
+
+        // dimension9 == "Section editing"
+        
+            // dimension12 == 'Page Revision'
+            ga('set', 'dimension12', '1361268');
+            // dimension17 == 'English Slug'
+            ga('set', 'dimension17', 'Web/JavaScript/Reference/Global_Objects/Object/defineProperty');
+
+        (function() {
+            // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+            var win = window;
+            var removeUtms = function(){
+                var location = win.location;
+                if (location.href.indexOf('utm') != -1 && win.history.replaceState) {
+                    win.history.replaceState({}, '', location.pathname);
+                }
+            };
+
+            ga('send', 'pageview', {'hitCallback': removeUtms});
+        })();
+    }
+</script>
+
+  
+    <!-- common social tags -->
+    
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://cdn.mdn.mozilla.net/static/img/opengraph-logo.72382e605ce3.png">
+    <meta property="og:site_name" content="MDN Web 文档">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://cdn.mdn.mozilla.net/static/img/opengraph-logo.72382e605ce3.png">
+    <meta name="twitter:site" content="@MozDevNet">
+    <meta name="twitter:creator" content="@MozDevNet">
+    <link rel="search" type="application/opensearchdescription+xml" href="https://developer.mozilla.org/zh-CN/search/xml" title="MDN Web 文档">
+  
+
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://cdn.mdn.mozilla.net/static/img/favicon144.e7e21ca263ca.png">
+  <!-- iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://cdn.mdn.mozilla.net/static/img/favicon114.d526f38b09c5.png">
+  <!-- first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://cdn.mdn.mozilla.net/static/img/favicon72.cc65d1d762a0.png">
+  <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="https://cdn.mdn.mozilla.net/static/img/favicon57.de33179910ae.png">
+  <!-- basic favicon -->
+     <!-- basic favicon -->
+  
+    
+  
+  <link rel="shortcut icon" href="https://cdn.mdn.mozilla.net/static/img/favicon32.7f3da72dcea1.png">
+  <!--[if IE]>
+  <meta http-equiv="imagetoolbar" content="no">
+  <script type="text/javascript" src="https://cdn.mdn.mozilla.net/static/build/js/html5shiv.3948ccddab6f.js" charset="utf-8"></script>
+  <![endif]-->
+
+  <script type="text/javascript" src="./Object.defineProperty() - JavaScript _ MDN_files/font-check.713e9d01025c.js" charset="utf-8"></script>
+
+  
+  <link rel="dns-prefetch" href="https://interactive-examples.mdn.mozilla.net/" pr="0.75">
+  <link rel="preconnect" href="https://interactive-examples.mdn.mozilla.net/" pr="0.75">
+
+  <link rel="preload" href="https://interactive-examples.mdn.mozilla.net/js/codemirror-5-31-0.js" as="script">
+  <link rel="preload" href="https://interactive-examples.mdn.mozilla.net/js/editor-js.js" as="script">
+
+  <link rel="alternate" type="application/json" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty$json">
+  <link rel="canonical" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+
+  
+    
+      <link rel="alternate" hreflang="en-US" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="de" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="es" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="fr" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="id" href="https://developer.mozilla.org/id/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="it" href="https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="ja" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="ko" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="nl" href="https://developer.mozilla.org/nl/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="pt-BR" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="pt-PT" href="https://developer.mozilla.org/pt-PT/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="ru" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="tr" href="https://developer.mozilla.org/tr/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="uk" href="https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="vi" href="https://developer.mozilla.org/vi/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+      <link rel="alternate" hreflang="zh-TW" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" title="Object.defineProperty()">
+    
+  
+
+  <!-- document-specific social tags -->
+  <meta property="og:title" content="Object.defineProperty()">
+  <meta property="og:url" content="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+  <meta name="twitter:url" content="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+  <meta name="twitter:title" content="Object.defineProperty()">
+  
+  <meta property="og:description" content="Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。">
+  <meta name="description" content="Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。">
+  <meta name="twitter:description" content="Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。">
+  
+
+<link href="./Object.defineProperty() - JavaScript _ MDN_files/wiki-compat-tables.aaae6c040d67.css" type="text/css" rel="stylesheet"><script async="" data-manual="true" src="./Object.defineProperty() - JavaScript _ MDN_files/syntax-prism.05dc5663d445.js"></script></head>
+<body data-slug="Web/JavaScript/Reference/Global_Objects/Object/defineProperty" contextmenu="edit-history-menu" data-search-url="" class="document  " cz-shortcut-listen="true"><div id="touchvpn_icon_container" class="disconnected" draggable="true" style="right: 1.17187500% !important; bottom: 2.06611570% !important;"><div id="touchvpn_status_icon" class="touchvpn_in"><div class="touchvpn_icon_sign">Best choice for browsing</div></div><div id="touchvpn_icon_selector"><div class="touchvpn_country touchvpn_gb"><div class="touchvpn_icon_sign">Browse from United Kingdom</div></div><div class="touchvpn_country touchvpn_in"><div class="touchvpn_icon_sign">Browse from India</div></div><div class="touchvpn_country touchvpn_sg"><div class="touchvpn_icon_sign">Browse from Singapore</div></div><div class="touchvpn_country touchvpn_tr"><div class="touchvpn_icon_sign">Browse from Turkey</div></div></div></div>
+
+  <script type="text/javascript">
+    // make sure global mdn object exists
+    var mdn = window.mdn || {};
+
+    (function(win) {
+        'use strict';
+
+        (function(){
+  var FLAGS = {
+    'compat_data': true,'kumaediting': false,'line_length': true,'page_move': false,'registration_disabled': false,'search_suggestions': false,'section_edit': false,'sg_task_completion': false,'spam_admin_override': false,'spam_checks_enabled': true,'spam_spammer_override': false,'spam_submissions_enabled': false,'spam_testing_mode': false,'wiki_samples': true,'wiki_spam_exempted': false,'wiki_spam_training': false
+    },
+    SWITCHES = {
+    'wiki_error_on_delete': false,'wiki_force_immediate_rendering': false,'enable_optimizely': false,'welcome_email': true,'application_ACAO': true,'store_revision_ips': true,'dumb_doc_urls': true,'newsletter': true,'newsletter_article': true,'foundation_callout': false,'helpful-survey-2': true,'wiki_spam_training': true
+    },
+    SAMPLES = {
+    
+    };
+  window.waffle = {
+    "flag_is_active": function waffle_flag(flag_name) {
+      
+      return !!FLAGS[flag_name];
+    },
+    "switch_is_active": function waffle_switch(switch_name) {
+      
+      return !!SWITCHES[switch_name];
+    },
+    "sample_is_active": function waffle_sample(sample_name) {
+      
+      return !!SAMPLES[sample_name];
+    },
+    "FLAGS": FLAGS,
+    "SWITCHES": SWITCHES,
+    "SAMPLES": SAMPLES
+  };
+})();
+
+
+        // This needs to be set before ckeditor.js loads
+        window.CKEDITOR_BASEPATH = '/static/js/libs/ckeditor/build/ckeditor/';
+
+        // Site configuration
+        win.mdn.ckeditor = {};
+        win.mdn.features = {};
+        win.mdn.staticPath = 'https://cdn.mdn.mozilla.net/static/';
+        win.mdn.wiki = {
+            autosuggestTitleUrl: '/zh-CN/docs/get-documents'
+        };
+        win.mdn.assets = {
+            css: {
+                'editor-content': ['https://cdn.mdn.mozilla.net/static/build/styles/editor-content.21a33a32d27c.css','https://cdn.mdn.mozilla.net/static/build/styles/editor-locale-zh-CN.f6594de96c23.css',
+                ],
+
+                'wiki-compat-tables': ['https://cdn.mdn.mozilla.net/static/build/styles/wiki-compat-tables.aaae6c040d67.css',]
+            },
+            js: {
+                'syntax-prism': ['https://cdn.mdn.mozilla.net/static/build/js/syntax-prism.05dc5663d445.js',],
+                'wiki-compat-tables': ['https://cdn.mdn.mozilla.net/static/build/js/wiki-compat-tables.003f4acf76ea.js',]
+            }
+        };
+
+        win.mdn.notifications = [];
+
+        
+
+        // interactive editor config
+        win.mdn.interactiveEditor = {
+            siteUrl: "https://developer.mozilla.org",
+            editorUrl: "https://interactive-examples.mdn.mozilla.net"
+        };
+
+    })(this);
+</script>
+    
+    <ul id="nav-access">
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#content" id="skip-main">跳到主要内容</a></li>
+  <li><a id="skip-language" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#language">选择语言</a></li>
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#q" id="skip-search">跳到搜索</a></li>
+</ul>
+
+    <!-- Header -->
+    <header id="main-header" class="header-main">
+      <a href="https://developer.mozilla.org/zh-CN/" class="logo">MDN Web 文档</a>
+      <div class="nav-toolbox-wrapper">
+        <nav id="main-nav" class="nav-main" role="navigation">
+    <ul>
+        <li class="nav-main-item">
+            <a href="https://developer.mozilla.org/zh-CN/docs/Web">技术
+                <i aria-hidden="true" class="icon-caret-down"></i>
+            </a>
+            <div class="submenu js-submenu" id="nav-tech-submenu">
+                <div class="submenu-column">
+                  <ul>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">HTML</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS">CSS</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">JavaScript</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Graphics">图像</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP">HTTP</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API">API / DOM</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Add-ons/WebExtensions">浏览器扩展</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/MathML">MathML</a></li>
+                  </ul>
+                </div>
+            </div>
+        </li>
+        <li class="nav-main-item">
+            <a href="https://developer.mozilla.org/zh-CN/docs/Learn">参考和指引
+                <i aria-hidden="true" class="icon-caret-down"></i>
+            </a>
+            <div class="submenu js-submenu" id="nav-learn-submenu">
+                <div class="submenu-column">
+                  <ul>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Learn">学习 web 开发</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Tutorials">教程</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Reference">参考文献</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide">开发者指南</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Accessibility">无障碍环境</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Games">游戏开发</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web">...更多文档</a></li>
+                  </ul>
+                </div>
+            </div>
+        </li>
+        <li class="nav-main-item">
+            <a href="https://developer.mozilla.org/zh-CN/docs/MDN/Feedback">反馈
+                <i aria-hidden="true" class="icon-caret-down"></i>
+            </a>
+            <div class="submenu js-submenu" id="nav-contact-submenu">
+              <div class="submenu-column">
+                <ul>
+                  <li>
+                      <a href="https://support.mozilla.org/">获取 Firefox 帮助
+                          <i aria-hidden="true" class="icon-external-link"></i>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://stackoverflow.com/">获取 Web 开发帮助
+                          <i aria-hidden="true" class="icon-external-link"></i>
+                      </a>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                      <a href="https://developer.mozilla.org/zh-CN/docs/MDN/Community">加入 MDN 社区</a>
+                  </li>
+                  <li>
+                      <a target="_blank" href="https://bugzilla.mozilla.org/form.doc?bug_file_loc=https%3A//developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">报告内容问题
+                          <i aria-hidden="true" class="icon-external-link"></i>
+                      </a>
+                  </li>
+                  <li>
+                      <a target="_blank" href="https://bugzilla.mozilla.org/form.mdn">报告缺陷
+                          <i aria-hidden="true" class="icon-external-link"></i>
+                      </a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+      </li>
+  </ul>
+</nav>
+        <div id="toolbox" class="toolbox">
+  <ul>
+  <li class="nav-login"><div class="login">
+    
+        
+        <a href="https://developer.mozilla.org/users/github/login/?next=%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FObject%2FdefineProperty" class="login-link js-login-link" data-service="GitHub" rel="nofollow">
+            登录
+            <i class="icon-github" aria-hidden="true"></i>
+        </a>
+    
+</div></li>
+  </ul>
+</div>
+      </div>
+      <form id="nav-main-search" action="https://developer.mozilla.org/zh-CN/search" method="get" role="search" class="nav-main-search">
+  <div class="search-wrap">
+    <label for="main-q" class="offscreen">搜索</label>
+    <input type="search" id="main-q" name="q" placeholder="搜索" data-value="" value="" aria-hidden="true">
+    <span class="search-trigger"><i aria-hidden="true" class="icon-search"></i></span>
+    <button type="submit" class="offscreen">搜索</button>
+    <button type="button" id="close-header-search" class="close-header-search transparent">
+        <span class="offscreen">关闭搜索</span>
+        <i aria-hidden="true" class="icon-times"></i>
+    </button>
+  </div>
+</form>
+    </header> 
+
+  <!-- Content will go here -->
+  <main id="content" role="main">
+      
+  <!-- heading -->
+  <div id="wiki-document-head" class="document-head">
+    <div class="center">
+      <!-- action buttons -->
+      <div class="document-actions">
+        
+
+  
+    
+    
+  
+
+  
+    
+  
+
+  
+
+  <ul class="page-buttons">
+      <li><button id="languages-menu" class="transparent" aria-haspopup="true" aria-owns="languages-menu-submenu" aria-expanded="false"><span>语言</span><i aria-hidden="true" class="icon-language"></i></button>
+
+        <div class="submenu js-submenu" id="languages-menu-submenu">
+          <div class="submenu-column">
+            <ul id="translations">
+              
+                
+                
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="en-US" title="英语 (美国)">English (US) (en-US)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="de" title="德语">Deutsch (de)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Object/defineProperty" data-locale="es" title="西班牙语">Español (es)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/defineProperty" data-locale="fr" title="法语">Français (fr)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/id/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="id" title="印尼语">Bahasa Indonesia (id)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="it" title="意大利语">Italiano (it)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="ja" title="日语">日本語 (ja)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="ko" title="朝鲜语">한국어 (ko)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/nl/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="nl" title="荷兰语">Nederlands (nl)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="pt-BR" title="葡萄牙语 (巴西)">Português (do&nbsp;Brasil) (pt-BR)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/pt-PT/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="pt-PT" title="葡萄牙语 (葡萄牙)">Português (Europeu) (pt-PT)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="ru" title="俄语">Русский (ru)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/tr/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="tr" title="土耳其语">Türkçe (tr)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="uk" title="乌克兰语">Українська (uk)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/vi/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="vi" title="越南语">Tiếng Việt (vi)</a></bdi></li>
+                
+                  <li><bdi><a rel="internal" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" data-locale="zh-TW" title="繁体中文">正體中文 (繁體) (zh-TW)</a></bdi></li>
+                
+              
+
+              
+            </ul>
+          </div>
+        </div>
+      </li>
+      
+      <li class="page-buttons-edit"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty$edit" class="button neutral" id="edit-button" rel="nofollow">编辑<i aria-hidden="true" class="icon-pencil"></i></a></li>
+      
+
+        
+
+        <li class="page-buttons-advanced"><button id="advanced-menu" class="only-icon" aria-haspopup="true" aria-owns="advanced-menu-submenu" aria-expanded="false"><span>高级</span><i aria-hidden="true" class="icon-cog"></i></button>
+        <div class="submenu js-submenu" id="advanced-menu-submenu">
+          <!-- this page -->
+          <div class="submenu-column">
+            <div class="title">高级</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty$history" rel="nofollow">历史记录</a></li>
+                
+                
+                
+
+
+                
+
+                
+                
+                
+                <li class="page-print"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#" onclick="return window.print();">打印此文章</a></li>
+            </ul>
+          </div>
+        </div>
+  </li></ul>
+      </div>
+
+      <div class="document-title">
+        
+
+        <h1>Object<wbr>.define<wbr>Property()</h1>
+      </div>
+    </div>
+  </div>
+  
+  <div id="toc" class="toc">
+    <div class="center">
+      <div class="toc-head">跳转到：</div>
+        <ol class="toc-links">
+          <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#%E8%AF%AD%E6%B3%95" rel="internal" class="">语法</a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Description" rel="internal" class="">描述</a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6" rel="internal" class="">属性描述符</a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Creating_a_property" rel="internal" class="toc-current">示例</a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#%E8%A7%84%E8%8C%83" rel="internal">规范</a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9" rel="internal">浏览器兼容</a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Cross-browser_concerns" rel="internal">兼容性问题</a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#See_also" rel="internal">相关链接</a>
+        </li></ol>
+    </div>
+  </div>
+  
+
+      <div class="center clear">
+      
+
+    <div class="wiki-main-content" id="document-main"><div class="center">
+      <!-- start the main content container -->
+        <div id="wiki-column-container" class="wiki-left-present">
+
+          <!-- content row with three strips -->
+          <div class="column-container column-container-reverse">
+
+            <!-- center: main article content -->
+            <div id="wiki-content" class="column-main wiki-column text-content">
+
+              
+
+              
+              
+
+              
+
+              
+                
+              
+              
+
+              <!-- just the article content -->
+              <article id="wikiArticle">
+                
+                  
+                    <div></div>
+
+<p><code><strong>Object.defineProperty()</strong></code> 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。</p>
+
+<h2 id="语法">语法</h2>
+
+<pre class="syntaxbox"><code>Object.defineProperty(<var>obj</var>, <var>prop</var>, <var>descriptor</var>)</code></pre>
+
+<h3 id="Parameters" name="Parameters" class="highlight-spanned"><span class="highlight-span">参数</span></h3>
+
+<dl>
+ <dt><code>obj</code></dt>
+ <dd>要在其上定义属性的对象。</dd>
+ <dt><code>prop</code></dt>
+ <dd>要定义或修改的属性的名称。</dd>
+ <dt><code>descriptor</code></dt>
+ <dd>将被定义或修改的属性描述符。</dd>
+</dl>
+
+<h3 id="返回值" class="highlight-spanned"><span class="highlight-span">返回值</span></h3>
+
+<p>&nbsp; &nbsp; 被传递给函数的对象。</p>
+
+<h3 id="ES6" class="highlight-spanned"><span class="highlight-span">ES6</span></h3>
+
+<p>&nbsp; &nbsp; 在ES6中，由于 Symbol类型的特殊性，用Symbol类型的值来做对象的key与常规的定义或修改不同，而<code>Object.defineProperty</code>&nbsp;是定义key为Symbol的属性的方法之一。</p>
+
+<p>&nbsp;</p>
+
+<h2 id="Description" name="Description">描述</h2>
+
+<p>&nbsp;</p>
+
+<p>该方法允许精确添加或修改对象的属性。通过赋值来添加的普通属性会创建在属性枚举期间显示的属性（<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in" title="for...in语句以任意顺序遍历一个对象的可枚举属性。对于每个不同的属性，语句都会被执行。"><code>for...in</code></a>&nbsp;或&nbsp;<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys" title="Object.keys() 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 （两者的主要区别是 一个 for-in 循环还会枚举其原型链上的属性）。"><code>Object.keys</code></a><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys" title="JavaScript/Reference/Global_Objects/Object/keys"> </a>方法），&nbsp;这些值可以被改变，也可以被<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/delete" title="delete 操作符用于删除对象的某个属性。">删除</a>。这种方法允许这些额外的细节从默认值改变。默认情况下，使用<code>Object.defineProperty()</code>添加的属性值是不可变的。</p>
+
+<p>&nbsp;</p>
+
+<h2 id="属性描述符">属性描述符</h2>
+
+<p>&nbsp;</p>
+
+<p>对象里目前存在的属性描述符有两种主要形式：<strong>数据描述符</strong>和<strong>存取描述符</strong>。数据描述符是一个具有值的属性，该值可能是可写的，也可能不是可写的。访问器描述符是由getter-setter函数对描述的属性。描述符必须是这两种形式之一；不能同时是两者。</p>
+
+<p><strong>数据描述符和存取描述符均具有</strong>以下可选键值：</p>
+
+<dl>
+ <dt><code>configurable</code></dt>
+ <dd>当且仅当该属性的 configurable 为 true 时，该属性<code>描述符</code>才能够被改变，同时该属性也能从对应的对象上被删除。<strong>默认为 false</strong>。</dd>
+ <dt><code>enumerable</code></dt>
+ <dd>当且仅当该属性的<code>enumerable</code>为<code>true</code>时，该属性才能够出现在对象的枚举属性中。<strong>默认为 false</strong>。</dd>
+</dl>
+
+<p>数据描述符同时具有以下可选键值：</p>
+
+<dl>
+ <dt><code>value</code></dt>
+ <dd>该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。<strong>默认为&nbsp;<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined" title="undefined是全局对象的一个属性。也就是说，它是全局作用域的一个变量。undefined的最初值就是原始数据类型undefined。"><code>undefined</code></a></strong>。</dd>
+ <dt><code>writable</code></dt>
+ <dd>当且仅当该属性的<code>writable</code>为<code>true</code>时，<code>value</code>才能被<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Assignment_Operators" title="赋值运算符（assignment operator）基于右值（right operand）的值，给左值（left operand）赋值。">赋值运算符</a>改变。<strong>默认为 <font face="consolas, Liberation Mono, courier, monospace">false</font></strong>。</dd>
+</dl>
+
+<p><strong>存取描述符同时具有以下可选键值</strong>：</p>
+
+<dl>
+ <dt><code>get</code></dt>
+ <dd>一个给属性提供 getter 的方法，如果没有 getter 则为&nbsp;<code>undefined</code>。该方法返回值被用作属性值。<strong>默认为 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined" title="undefined是全局对象的一个属性。也就是说，它是全局作用域的一个变量。undefined的最初值就是原始数据类型undefined。"><code>undefined</code></a></strong>。</dd>
+ <dt><code>set</code></dt>
+ <dd>一个给属性提供 setter 的方法，如果没有 setter 则为&nbsp;<code>undefined</code>。该方法将接受唯一参数，并将该参数的新值分配给该属性。<strong>默认为 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined" title="undefined是全局对象的一个属性。也就是说，它是全局作用域的一个变量。undefined的最初值就是原始数据类型undefined。"><code>undefined</code></a></strong>。</dd>
+ <dt>
+ <table class="standard-table">
+  <caption>
+  <h4 id="描述符可同时具有的键值">描述符可同时具有的键值</h4>
+  </caption>
+  <tbody>
+   <tr>
+    <td>&nbsp;</td>
+    <td>configurable</td>
+    <td>enumerable</td>
+    <td>value</td>
+    <td>writable</td>
+    <td>get</td>
+    <td>set</td>
+   </tr>
+   <tr>
+    <td>数据描述符</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>No</td>
+    <td>No</td>
+   </tr>
+   <tr>
+    <td>存取描述符</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>No</td>
+    <td>No</td>
+    <td>Yes</td>
+    <td>Yes</td>
+   </tr>
+  </tbody>
+ </table>
+
+ <p>如果一个描述符不具有value,writable,get 和 set&nbsp;任意一个关键字，那么它将被认为是一个数据描述符。如果一个描述符同时有(value或writable)和(get或set)关键字，将会产生一个异常。</p>
+ </dt>
+</dl>
+
+<p>记住，这些选项不一定是自身属性，如果是继承来的也要考虑。为了确认保留这些默认值，你可能要在这之前冻结 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype" title="Object.prototype 属性表示 Object 的原型对象。"><code>Object.prototype</code></a>，明确指定所有的选项，或者将<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/__proto__" title="此页面仍未被本地化, 期待您的翻译!" class="new" rel="nofollow"><code>__proto__</code></a>属性指向<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/null" title="值 null 特指对象的值未设置。它是 JavaScript 基本类型 之一。"><code>null</code></a>。</p>
+
+<pre class="brush: js line-numbers  language-js"><code class=" language-js"><span class="token comment" spellcheck="true">// 使用 __proto__</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> descriptor <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 没有继承的属性</span>
+<span class="token comment" spellcheck="true">// 默认没有 enumerable，没有 configurable，没有 writable</span>
+descriptor<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">'static'</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'key'</span><span class="token punctuation">,</span> descriptor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 显式</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">"key"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  enumerable<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+  configurable<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+  writable<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+  value<span class="token punctuation">:</span> <span class="token string">"static"</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 循环使用同一对象</span>
+<span class="token keyword">function</span> <span class="token function">withValue</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> d <span class="token operator">=</span> withValue<span class="token punctuation">.</span>d <span class="token operator">||</span> <span class="token punctuation">(</span>
+    withValue<span class="token punctuation">.</span>d <span class="token operator">=</span> <span class="token punctuation">{</span>
+      enumerable<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+      writable<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+      configurable<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+      value<span class="token punctuation">:</span> <span class="token keyword">null</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  d<span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> d<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// ... 并且 ...</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">"key"</span><span class="token punctuation">,</span> <span class="token function">withValue</span><span class="token punctuation">(</span><span class="token string">"static"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 如果 freeze 可用, 防止代码添加或删除对象原型的属性</span>
+<span class="token comment" spellcheck="true">// （value, get, set, enumerable, writable, configurable）</span>
+<span class="token punctuation">(</span>Object<span class="token punctuation">.</span>freeze<span class="token operator">||</span>Object<span class="token punctuation">)</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Creating_a_property" name="Creating_a_property">示例</h2>
+
+<p>如果你想了解如何使用<code>Object.defineProperty</code>方法和类二进制标记语法<span style="line-height: 1.5;">，看看</span><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty/Additional_examples" style="line-height: 1.5;" title="JavaScript/Reference/Global_Objects/Object/defineProperty/Additional_examples">这篇文章</a><span style="line-height: 1.5;">。</span></p>
+
+<h3 id="Creating_a_property" name="Creating_a_property" class="highlight-spanned"><span class="highlight-span">创建属性</span></h3>
+
+<p>如果对象中不存在指定的属性，<span style="font-family: courier new,andale mono,monospace; line-height: 1.5;"><code>Object.defineProperty()</code></span>就创建这个属性。当描述符中省略某些字段时，这些字段将使用它们的默认值。拥有布尔值的字段的默认值都是<span style="font-family: courier new,andale mono,monospace; line-height: 1.5;"><code>false</code></span>。<code>value</code>，<code>get</code>和<code>set</code>字段的默认值为<code>undefined</code>。一个没有<code>get/set/value/writable</code>定义的属性被称为“通用的”，并被“键入”为一个数据描述符。</p>
+
+<pre class="brush: js line-numbers  language-js"><code class=" language-js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 创建一个新对象</span>
+
+<span class="token comment" spellcheck="true">// 在对象中添加一个属性与数据描述符的示例</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value <span class="token punctuation">:</span> <span class="token number">37</span><span class="token punctuation">,</span>
+  writable <span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+  enumerable <span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+  configurable <span class="token punctuation">:</span> <span class="token keyword">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 对象o拥有了属性a，值为37</span>
+
+<span class="token comment" spellcheck="true">// 在对象中添加一个属性与存取描述符的示例</span>
+<span class="token keyword">var</span> bValue<span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token keyword">get</span> <span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> bValue<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token keyword">set</span> <span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    bValue <span class="token operator">=</span> newValue<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  enumerable <span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+  configurable <span class="token punctuation">:</span> <span class="token keyword">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+o<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">38</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 对象o拥有了属性b，值为38</span>
+
+<span class="token comment" spellcheck="true">// o.b的值现在总是与bValue相同，除非重新定义o.b</span>
+
+<span class="token comment" spellcheck="true">// 数据描述符和存取描述符不能混合使用</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"conflict"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token punctuation">:</span> <span class="token number">0x9f91102</span><span class="token punctuation">,</span> 
+  <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">return</span> <span class="token number">0xdeadbeef</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// throws a TypeError: value appears only in data descriptors, get appears only in accessor descriptors</span><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Modifying_a_property" name="Modifying_a_property" class="highlight-spanned"><span class="highlight-span">修改属性</span></h3>
+
+<p>如果属性已经存在，<code>Object.defineProperty()</code>将尝试根据描述符中的值以及对象当前的配置来修改这个属性。如果旧描述符将其<code>configurable</code>&nbsp;属性设置为<code>false</code>，则该属性被认为是“不可配置的”，并且没有属性可以被改变（除了单向改变 writable&nbsp;为 false）。当属性不可配置时，不能在数据和访问器属性类型之间切换。</p>
+
+<p>当试图改变不可配置属性（除了<code>writable</code>&nbsp;属性之外）的值时会抛出{jsxref("TypeError")}}，除非当前值和新值相同。</p>
+
+<h4 id="Writable_attribute" name="Writable_attribute">Writable 属性</h4>
+
+<p>当<code>writable</code>属性设置为<code>false</code>时，该属性被称为“不可写”。它不能被重新分配。</p>
+
+<pre class="brush: js line-numbers  language-js"><code class=" language-js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Creates a new object</span>
+
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token punctuation">:</span> <span class="token number">37</span><span class="token punctuation">,</span>
+  writable<span class="token punctuation">:</span> <span class="token keyword">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// logs 37</span>
+o<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">25</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// No error thrown</span>
+<span class="token comment" spellcheck="true">// (it would throw in strict mode,</span>
+<span class="token comment" spellcheck="true">// even if the value had been the same)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// logs 37. The assignment didn't work.</span>
+
+<span class="token comment" spellcheck="true">// strict mode</span>
+<span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    value<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    writable<span class="token punctuation">:</span> <span class="token keyword">false</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  o<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// throws TypeError: "b" is read-only</span>
+  <span class="token keyword">return</span> o<span class="token punctuation">.</span>b<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// returns 2 without the line above</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如示例所示，试图写入非可写属性不会改变它，也不会引发错误。</p>
+
+<h4 id="Enumerable_attribute" name="Enumerable_attribute">Enumerable 特性</h4>
+
+<p>&nbsp;<code>enumerable</code>定义了对象的属性是否可以在&nbsp;<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in" title="for...in语句以任意顺序遍历一个对象的可枚举属性。对于每个不同的属性，语句都会被执行。"><code>for...in</code></a> 循环和&nbsp;<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys" title="Object.keys() 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 （两者的主要区别是 一个 for-in 循环还会枚举其原型链上的属性）。"><code>Object.keys()</code></a> 中被枚举。</p>
+
+<pre class="brush: js line-numbers  language-js"><code class=" language-js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> value <span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> enumerable<span class="token punctuation">:</span><span class="token keyword">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> value <span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> enumerable<span class="token punctuation">:</span><span class="token keyword">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> value <span class="token punctuation">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// enumerable defaults to false</span>
+o<span class="token punctuation">.</span>d <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 如果使用直接赋值的方式创建对象的属性，则这个属性的enumerable为true</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token keyword">in</span> o<span class="token punctuation">)</span> <span class="token punctuation">{</span>    
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 打印 'a' 和 'd' (in undefined order)</span>
+
+Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ["a", "d"]</span>
+
+o<span class="token punctuation">.</span><span class="token function">propertyIsEnumerable</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+o<span class="token punctuation">.</span><span class="token function">propertyIsEnumerable</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// false</span>
+o<span class="token punctuation">.</span><span class="token function">propertyIsEnumerable</span><span class="token punctuation">(</span><span class="token string">'c'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// false</span><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Configurable_attribute" name="Configurable_attribute">Configurable 特性</h4>
+
+<p><code>configurable</code>特性表示对象的属性是否可以被删除，以及除<code>writable</code>特性外的其他特性是否可以被修改。</p>
+
+<pre class="brush: js line-numbers  language-js"><code class=" language-js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token keyword">get</span> <span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+                                configurable <span class="token punctuation">:</span> <span class="token keyword">false</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// throws a TypeError</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>configurable <span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true">// throws a TypeError</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>enumerable <span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true">// throws a TypeError (set was undefined previously) </span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token keyword">set</span> <span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true">// throws a TypeError (even though the new get does exactly the same thing) </span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token keyword">get</span> <span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// throws a TypeError</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>value <span class="token punctuation">:</span> <span class="token number">12</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// logs 1</span>
+<span class="token keyword">delete</span> o<span class="token punctuation">.</span>a<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Nothing happens</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// logs 1</span><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果<code>o.a</code>的<code>configurable</code>属性为<code>true</code>，则不会抛出任何错误，并且该属性将在最后被删除。</p>
+
+<h3 id="Adding_properties_and_default_values" name="Adding_properties_and_default_values" class="highlight-spanned"><span class="highlight-span">添加多个属性和默认值</span></h3>
+
+<p>考虑特性被赋予的默认特性值非常重要，通常，使用点运算符和<code>Object.defineProperty()</code>为对象的属性赋值时，数据描述符中的属性默认值是不同的，如下例所示。</p>
+
+<pre class="brush: js line-numbers  language-js"><code class=" language-js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+o<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 等同于 :</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value <span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  writable <span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+  configurable <span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+  enumerable <span class="token punctuation">:</span> <span class="token keyword">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment" spellcheck="true">// 另一方面，</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> value <span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 等同于 :</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value <span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  writable <span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+  configurable <span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+  enumerable <span class="token punctuation">:</span> <span class="token keyword">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="一般的_Setters_和_Getters" class="highlight-spanned"><span class="highlight-span">一般的 Setters 和&nbsp;Getters</span></h3>
+
+<p>下面的例子展示了如何实现一个自存档对象。 当设置<code>temperature</code>&nbsp;属性时，<code>archive</code>&nbsp;数组会获取日志条目。</p>
+
+<pre class="brush: js line-numbers  language-js"><code class=" language-js"><span class="token keyword">function</span> <span class="token function">Archiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> temperature <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> archive <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">'temperature'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'get!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> temperature<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">set</span><span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      temperature <span class="token operator">=</span> value<span class="token punctuation">;</span>
+      archive<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> val<span class="token punctuation">:</span> temperature <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span>getArchive <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> archive<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> arc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Archiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+arc<span class="token punctuation">.</span>temperature<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'get!'</span>
+arc<span class="token punctuation">.</span>temperature <span class="token operator">=</span> <span class="token number">11</span><span class="token punctuation">;</span>
+arc<span class="token punctuation">.</span>temperature <span class="token operator">=</span> <span class="token number">13</span><span class="token punctuation">;</span>
+arc<span class="token punctuation">.</span><span class="token function">getArchive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [{ val: 11 }, { val: 13 }]</span><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>或</p>
+
+<pre class="brush: js line-numbers  language-js"><code class=" language-js"><span class="token keyword">var</span> pattern <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'I alway return this string,whatever you have assigned'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">set</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>myname <span class="token operator">=</span> <span class="token string">'this is my name string'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">function</span> <span class="token function">TestDefineSetAndGet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">'myproperty'</span><span class="token punctuation">,</span> pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">var</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TestDefineSetAndGet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+instance<span class="token punctuation">.</span>myproperty <span class="token operator">=</span> <span class="token string">'test'</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 'I alway return this string,whatever you have assigned'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>myproperty<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 'this is my name string'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>myname<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 style="margin-bottom: 20px; line-height: 30px;" id="规范">规范</h2>
+
+<table class="standard-table">
+ <tbody>
+  <tr>
+   <th scope="col">Specification</th>
+   <th scope="col">Status</th>
+   <th scope="col">Comment</th>
+  </tr>
+  <tr>
+   <td><a href="https://www.ecma-international.org/ecma-262/5.1/#sec-15.2.3.6" hreflang="en" lang="en" class="external external-icon" rel="noopener">ECMAScript 5.1 (ECMA-262)<br><small lang="zh-CN">Object.defineProperty</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>Initial definition. Implemented in JavaScript 1.8.5.</td>
+  </tr>
+  <tr>
+   <td><a href="https://www.ecma-international.org/ecma-262/6.0/#sec-object.defineproperty" hreflang="en" lang="en" class="external external-icon" rel="noopener">ECMAScript 2015 (6th Edition, ECMA-262)<br><small lang="zh-CN">Object.defineProperty</small></a></td>
+   <td><span class="spec-Standard">Standard</span></td>
+   <td>&nbsp;</td>
+  </tr>
+  <tr>
+   <td><a href="https://tc39.github.io/ecma262/#sec-object.defineproperty" hreflang="en" lang="en" class="external external-icon" rel="noopener">ECMAScript Latest Draft (ECMA-262)<br><small lang="zh-CN">Object.defineProperty</small></a></td>
+   <td><span class="spec-Draft">Draft</span></td>
+   <td>&nbsp;</td>
+  </tr>
+ </tbody>
+</table>
+
+<h2 id="浏览器兼容">浏览器兼容</h2>
+
+<div class="hidden">The compatibility table on this page is generated from structured data. If you'd like to contribute to the data, please check out&nbsp;<a href="https://github.com/mdn/browser-compat-data" class="external external-icon" rel="noopener">https://github.com/mdn/browser-compat-data</a>&nbsp;and send us a pull request.</div>
+
+<p></p><div class="bc-old hidden"><div class="htab">
+    <a id="AutoCompatibilityTable" name="AutoCompatibilityTable"></a>
+    <ul>
+    <li class="selected">
+    <a>Desktop</a>
+    </li>
+    <li>
+    <a>Mobile</a>
+    </li>
+    </ul>
+    <div id="compat-desktop" style="display: block;"><table class="compat-table"><thead><tr><th>Feature</th><th>Chrome</th><th>Edge</th><th>Firefox</th><th>Internet Explorer</th><th>Opera</th><th>Safari</th></tr></thead><tbody><tr><td><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Basic support</a></td><td class="full-support">5</td><td class="full-support"><span title="Please update this with the earliest version of support.">
+      Yes</span></td><td class="full-support">4</td><td class="full-support">9<sup><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#compatNote_1">1</a></sup></td><td class="full-support">11.6</td><td class="full-support">5.1<sup><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#compatNote_2">2</a></sup></td></tr></tbody></table></div><div id="compat-mobile" style="display: none;"><table class="compat-table"><thead><tr><th>Feature</th><th>Android webview</th><th>Chrome for Android</th><th>Edge mobile</th><th>Firefox for Android</th><th>Opera Android</th><th>iOS Safari</th><th>Samsung Internet</th></tr></thead><tbody><tr><td><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Basic support</a></td><td class="full-support"><span title="Please update this with the earliest version of support.">
+      Yes</span></td><td class="full-support"><span title="Please update this with the earliest version of support.">
+      Yes</span></td><td class="full-support"><span title="Please update this with the earliest version of support.">
+      Yes</span></td><td class="full-support">4</td><td class="full-support">11.5</td><td class="full-support"><span title="Please update this with the earliest version of support.">
+      Yes</span></td><td class="unknown-support"><span title="Compatibility unknown; please update this.">
+      ?</span></td></tr></tbody></table></div></div><p id="compatNote_1">1. Also supported in Internet Explorer 8, but only on DOM objects and with some non-standard behaviors.</p><p id="compatNote_2">2. Also supported in Safari 5, but not on DOM objects.</p></div><div class="bc-data"><div class="bc-beta-menu"><a href="https://developer.mozilla.org/docs/New_Compatibility_Tables_Beta">新的兼容性表格正在测试中 <i class="icon-caret-down" aria-hidden="true"></i></a><ul class="submenu js-submenu"><li><a href="https://developer.mozilla.org/docs/New_Compatibility_Tables_Beta">关于测试的更多信息。</a></li><li><a href="https://www.surveygizmo.com/s3/2342437/0b5ff6b6b8f6" class="external external-icon">参与调查</a></li><li><button class="button bc-error">报告错误。</button></li><li><button class="button bc-old">显示旧式表格。</button></li></ul></div><table class="bc-table bc-table-js"><thead><tr class="bc-platforms"><td></td><th colspan="6" class="bc-platform-desktop"><abbr class="only-icon" title="Desktop"><span>Desktop</span><i class="ic-desktop"></i></abbr></th><th colspan="7" class="bc-platform-mobile"><abbr class="only-icon" title="Mobile"><span>Mobile</span><i class="ic-mobile"></i></abbr></th><th colspan="1" class="bc-platform-server"><abbr class="only-icon" title="Server"><span>Server</span><i class="ic-server"></i></abbr></th></tr><tr class="bc-browsers"><td></td><th class="bc-browser-chrome"><abbr class="only-icon" title="Chrome"><span>Chrome</span><i class="ic-chrome"></i></abbr></th><th class="bc-browser-edge"><abbr class="only-icon" title="Edge"><span>Edge</span><i class="ic-edge"></i></abbr></th><th class="bc-browser-firefox"><abbr class="only-icon" title="Firefox"><span>Firefox</span><i class="ic-firefox"></i></abbr></th><th class="bc-browser-ie"><abbr class="only-icon" title="Internet Explorer"><span>Internet Explorer</span><i class="ic-ie"></i></abbr></th><th class="bc-browser-opera"><abbr class="only-icon" title="Opera"><span>Opera</span><i class="ic-opera"></i></abbr></th><th class="bc-browser-safari"><abbr class="only-icon" title="Safari"><span>Safari</span><i class="ic-safari"></i></abbr></th><th class="bc-browser-webview_android"><abbr class="only-icon" title="Android webview"><span>Android webview</span><i class="ic-webview_android"></i></abbr></th><th class="bc-browser-chrome_android"><abbr class="only-icon" title="Chrome for Android"><span>Chrome for Android</span><i class="ic-chrome_android"></i></abbr></th><th class="bc-browser-edge_mobile"><abbr class="only-icon" title="Edge Mobile"><span>Edge Mobile</span><i class="ic-edge_mobile"></i></abbr></th><th class="bc-browser-firefox_android"><abbr class="only-icon" title="Firefox for Android"><span>Firefox for Android</span><i class="ic-firefox_android"></i></abbr></th><th class="bc-browser-opera_android"><abbr class="only-icon" title="Opera for Android"><span>Opera for Android</span><i class="ic-opera_android"></i></abbr></th><th class="bc-browser-safari_ios"><abbr class="only-icon" title="iOS Safari"><span>iOS Safari</span><i class="ic-safari_ios"></i></abbr></th><th class="bc-browser-samsunginternet_android"><abbr class="only-icon" title="Samsung Internet"><span>Samsung Internet</span><i class="ic-samsunginternet_android"></i></abbr></th><th class="bc-browser-nodejs"><abbr class="only-icon" title="Node.js"><span>Node.js</span><i class="ic-nodejs"></i></abbr></th></tr></thead><tbody><tr><th scope="row">Basic support</th><td class="bc-supports-yes bc-browser-chrome"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              5</td><td class="bc-supports-yes bc-browser-edge"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              Yes</td><td class="bc-supports-yes bc-browser-firefox"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              4</td><td class="bc-supports-yes bc-browser-ie bc-has-history" tabindex="0" aria-expanded="false" aria-controls="bc-history-1"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              9<div class="bc-icons"><abbr class="only-icon" title="See implementation notes"><span>Notes</span><i class="ic-footnote"></i></abbr> </div><button title="打开实现笔记" class="bc-history-link only-icon" tabindex="-1"><span>打开</span><i class="ic-history" aria-hidden="true"></i></button><section id="bc-history-1" class="bc-history"><dl><dt class="bc-supports-yes bc-supports"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              9<div class="bc-icons"><abbr class="only-icon" title="See implementation notes"><span>Notes</span><i class="ic-footnote"></i></abbr> </div></dt><dd><abbr class="only-icon" title="See implementation notes"><span>Notes</span><i class="ic-footnote"></i></abbr> Also supported in Internet Explorer 8, but only on DOM objects and with some non-standard behaviors.</dd></dl></section></td><td class="bc-supports-yes bc-browser-opera"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              11.6</td><td class="bc-supports-yes bc-browser-safari bc-has-history" tabindex="0" aria-expanded="false" aria-controls="bc-history-2"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              5.1<div class="bc-icons"><abbr class="only-icon" title="See implementation notes"><span>Notes</span><i class="ic-footnote"></i></abbr> </div><button title="打开实现笔记" class="bc-history-link only-icon" tabindex="-1"><span>打开</span><i class="ic-history" aria-hidden="true"></i></button><section id="bc-history-2" class="bc-history"><dl><dt class="bc-supports-yes bc-supports"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              5.1<div class="bc-icons"><abbr class="only-icon" title="See implementation notes"><span>Notes</span><i class="ic-footnote"></i></abbr> </div></dt><dd><abbr class="only-icon" title="See implementation notes"><span>Notes</span><i class="ic-footnote"></i></abbr> Also supported in Safari 5, but not on DOM objects.</dd></dl></section></td><td class="bc-supports-yes bc-browser-webview_android"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              Yes</td><td class="bc-supports-yes bc-browser-chrome_android"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              Yes</td><td class="bc-supports-yes bc-browser-edge_mobile"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              Yes</td><td class="bc-supports-yes bc-browser-firefox_android"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              4</td><td class="bc-supports-yes bc-browser-opera_android"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              11.5</td><td class="bc-supports-yes bc-browser-safari_ios"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              Yes</td><td class="bc-supports-unknown bc-browser-samsunginternet_android"><abbr title="Compatibility unknown; please update this.">
+                ?
+              </abbr></td><td class="bc-supports-yes bc-browser-nodejs"><abbr class="bc-level-yes only-icon" title="Full support">
+                <span>Full support</span>
+              </abbr>
+              Yes</td></tr></tbody></table><section id="sect3" class="bc-legend"><h3 id="Legend" class="offscreen highlight-spanned"><span class="highlight-span">Legend</span></h3><dl><dt><span class="bc-supports-yes bc-supports">
+                <abbr class="bc-level bc-level-yes only-icon" title="Full support">
+                 <span>Full support</span>
+                 &nbsp;
+                </abbr></span></dt><dd>Full support</dd><dt><span class="bc-supports-unknown bc-supports">
+                <abbr class="bc-level bc-level-unknown only-icon" title="Compatibility unknown">
+                 <span>Compatibility unknown</span>
+                 &nbsp;
+                </abbr></span></dt><dd>Compatibility unknown</dd><dt><abbr class="only-icon" title="See implementation notes."><span>See implementation notes.</span><i class="ic-footnote"></i></abbr></dt><dd>See implementation notes.</dd></dl></section></div><p></p>
+
+<h2 id="Cross-browser_concerns" name="Cross-browser_concerns">兼容性问题</h2>
+
+<h3 id="Redefining_the_length_property_of_an_Array_object" name="Redefining_the_length_property_of_an_Array_object" class="highlight-spanned"><span class="highlight-span">重定义数组对象的 length 属性</span></h3>
+
+<p>数组的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length" title="length 是Array的实例属性。返回或设置一个数组中的元素个数。该值是一个无符号 32-bit 整数，并且总是大于数组最高项的下标。"><code>length</code></a> 属性重定义是可能的，但是会受到一般的重定义限制。（<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length" title="length 是Array的实例属性。返回或设置一个数组中的元素个数。该值是一个无符号 32-bit 整数，并且总是大于数组最高项的下标。"><code>length</code></a> 属性初始为 non-configurable，non-enumerable 以及&nbsp;writable。对于一个内容不变的数组，改变其&nbsp;<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length" title="length 是Array的实例属性。返回或设置一个数组中的元素个数。该值是一个无符号 32-bit 整数，并且总是大于数组最高项的下标。"><code>length</code></a> 属性的值或者使它变为 non-writable 是可能的。但是改变其可枚举性和可配置性或者当它是 non-writable 时尝试改变它的值或是可写性，这两者都是不允许的。）然而，并不是所有的浏览器都允许 <code>Array.length</code> 的重定义。</p>
+
+<p>在 Firefox 4 至 22 版本中尝试去重定义数组的 length 属性都会抛出一个&nbsp;<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypeError" title="TypeError（类型错误） 对象用来表示值的类型非预期类型时发生的错误。"><code>TypeError</code></a>&nbsp;异常。</p>
+
+<p>有些版本的Chrome中，<code>Object.defineProperty()</code>&nbsp;在某些情况下会忽略不同于数组当前<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length" title="length 是Array的实例属性。返回或设置一个数组中的元素个数。该值是一个无符号 32-bit 整数，并且总是大于数组最高项的下标。"><code>length</code></a>属性的length值。有些情况下改变可写性并不起作用（也不抛出异常）。同时，比如<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/push" title="push() 方法将一个或多个元素添加到数组的末尾，并返回新数组的长度。"><code>Array.prototype.push</code></a>的一些数组操作方法也不会考虑不可读的length属性。</p>
+
+<p>有些版本的Safari中，<code>Object.defineProperty()</code>&nbsp;&nbsp;在某些情况下会忽略不同于数组当前<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length" title="length 是Array的实例属性。返回或设置一个数组中的元素个数。该值是一个无符号 32-bit 整数，并且总是大于数组最高项的下标。"><code>length</code></a>属性的length值。尝试改变可写性的操作会正常执行而不抛出错误，但事实上并未改变属性的可写性。</p>
+
+<p>只在Internet Explorer 9及以后版本和Firefox 23及以后版本中，才完整地正确地支持数组<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length" title="length 是Array的实例属性。返回或设置一个数组中的元素个数。该值是一个无符号 32-bit 整数，并且总是大于数组最高项的下标。"><code>length</code></a>属性的重新定义。目前不要依赖于重定义数组<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length" title="length 是Array的实例属性。返回或设置一个数组中的元素个数。该值是一个无符号 32-bit 整数，并且总是大于数组最高项的下标。"><code>length</code></a> 属性能够起作用，或在特定情形下起作用。与此同时，即使你能够依赖于它，你也<a href="http://whereswalden.com/2013/08/05/new-in-firefox-23-the-length-property-of-an-array-can-be-made-non-writable-but-you-shouldnt-do-it/" class="external external-icon" rel="noopener">没有合适的理由这样做</a>。</p>
+
+<h3 id="Internet_Explorer_8_具体案例" class="highlight-spanned"><span class="highlight-span">Internet Explorer 8 具体案例</span></h3>
+
+<p>Internet Explorer 8 实现了&nbsp;<code>Object.defineProperty()</code> 方法，但 <a href="http://msdn.microsoft.com/en-us/library/dd229916%28VS.85%29.aspx" class="external external-icon" rel="noopener">只能在 DOM 对象上使用</a>。&nbsp;需要注意的一些事情：</p>
+
+<ul>
+ <li>尝试在原生对象上使用&nbsp;<code>Object.defineProperty()会</code>报错。</li>
+ <li>属性特性必须设置一些特定的值。对于数据属性描述符，<code>configurable</code>, <code>enumerable </code>和&nbsp;<code>writable&nbsp;</code>特性必须全部设置为 <code>true；</code>对于访问器属性描述符，<code>configurable&nbsp;</code>必须设置为 <code>true</code>，<code>enumerable </code>必须设置为 <code>false</code>。(?) 任何试图提供其他值(?)将导致一个错误抛出。</li>
+ <li>重新配置一个属性首先需要删除该属性。如果属性没有删除，就如同重新配置前的尝试。</li>
+</ul>
+
+<h2 style="margin-bottom: 20px; line-height: 30px;" id="See_also" name="See_also">相关链接</h2>
+
+<ul>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Enumerability_and_ownership_of_properties" title="Enumerability_and_ownership_of_properties">Enumerability and ownership of properties</a></li>
+ <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties" title="Object.defineProperties() 方法直接在一个对象上定义新的属性或修改现有属性，并返回该对象。"><code>Object.defineProperties()</code></a></li>
+ <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/propertyIsEnumerable" title="propertyIsEnumerable() 方法返回一个布尔值，表示指定的属性是否可枚举。"><code>Object.propertyIsEnumerable()</code></a></li>
+ <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor" title="Object.getOwnPropertyDescriptor() 方法返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）"><code>Object.getOwnPropertyDescriptor()</code></a></li>
+ <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/watch" title="undefined."><code>Object.prototype.watch()</code></a></li>
+ <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/unwatch" title="unwatch() 删除一个 watch() 设置的 watchpoint."><code>Object.prototype.unwatch()</code></a></li>
+ <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/get" title="此页面仍未被本地化, 期待您的翻译!" class="new" rel="nofollow"><code>get</code></a></li>
+ <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/set" title="此页面仍未被本地化, 期待您的翻译!" class="new" rel="nofollow"><code>set</code></a></li>
+ <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create" title="Object.create() 方法会使用指定的原型对象及其属性去创建一个新的对象。"><code>Object.create()</code></a></li>
+ <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty/Additional_examples">Additional&nbsp;<code>Object.defineProperty</code>&nbsp;examples</a></li>
+ <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/defineProperty" title="静态方法 Reflect.defineProperty() 基本等同于 Object.defineProperty() 方法，唯一不同是返回 Boolean 值。"><code>Reflect.defineProperty()</code></a></li>
+</ul>
+                  
+                
+              </article>
+
+              <!-- contributors -->
+              <div class="wiki-block contributors">
+                <h2 class="offscreen">文档标签和贡献者</h2>
+                
+                
+  <div class="tag-attach-list contributors-sub">
+    <i aria-hidden="true" class="icon-tags icon-fw"></i>
+    <strong>标签：</strong>&nbsp;
+    <ul class="tags tags-small">
+      
+        <li><a href="https://developer.mozilla.org/zh-CN/docs/tag/ECMAScript%205" rel="nofollow">ECMAScript 5</a></li>
+      
+        <li><a href="https://developer.mozilla.org/zh-CN/docs/tag/JavaScript" rel="nofollow">JavaScript</a></li>
+      
+        <li><a href="https://developer.mozilla.org/zh-CN/docs/tag/JavaScript%201.8.5" rel="nofollow">JavaScript 1.8.5</a></li>
+      
+        <li><a href="https://developer.mozilla.org/zh-CN/docs/tag/Method" rel="nofollow">Method</a></li>
+      
+        <li><a href="https://developer.mozilla.org/zh-CN/docs/tag/Object" rel="nofollow">Object</a></li>
+      
+    </ul>
+  </div>
+
+
+                
+                  <div class="contributors-sub">
+                    <i aria-hidden="true" class="icon-group icon-fw"></i>&nbsp;<strong>此页面的贡献者：</strong> 
+        <a href="https://developer.mozilla.org/zh-CN/profiles/Mrdapeng">Mrdapeng</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/yuyongjun123">yuyongjun123</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/buptsky">buptsky</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/ywjco">ywjco</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/Wutang">Wutang</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/Black-Hole">Black-Hole</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/zhangchen">zhangchen</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/xiiiAtCn">xiiiAtCn</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/C_Kite">C_Kite</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/MrITzhongzi">MrITzhongzi</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/usernameisMan">usernameisMan</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/zilong">zilong</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/ziyunfei">ziyunfei</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/dttx123">dttx123</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/win5do">win5do</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/Ende93">Ende93</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/righttoe">righttoe</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/hicrow">hicrow</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/xgqfrms-GitHub">xgqfrms-GitHub</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/maxmeng">maxmeng</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/whwei">whwei</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/xuemengfei">xuemengfei</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/riversYeHaha">riversYeHaha</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/harttle">harttle</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/coolguy">coolguy</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/KingMario">KingMario</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/helinjiang">helinjiang</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/Lenville">Lenville</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/teoli">teoli</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/TimothyZhang">TimothyZhang</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/AlexChao">AlexChao</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/aaron4512">aaron4512</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/jiraiya">jiraiya</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/yanhaijing">yanhaijing</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/StuPig">StuPig</a>, 
+    
+        <a href="https://developer.mozilla.org/zh-CN/profiles/OoOoOoOo">OoOoOoOo</a>
+    
+                  </div>
+                
+
+                
+                  <div class="contributors-sub">
+                    <i aria-hidden="true" class="icon-clock-o icon-fw"></i>&nbsp;<strong>最后编辑者:</strong>
+                    <a href="https://developer.mozilla.org/zh-CN/profiles/Mrdapeng">Mrdapeng</a>,
+                    <time datetime="2018-02-21T09:18:47.843371-08:00">Feb 21, 2018, 9:18:47 AM</time>
+                  </div>
+                
+              </div>
+            </div>
+
+            
+              <!-- quick links and zone subnav strip -->
+              <div id="wiki-left" class="column-strip wiki-column">
+
+                
+                  <!-- crumbs -->
+                  
+  
+    <nav class="crumbs" role="navigation">
+      <ol typeof="BreadcrumbList" vocab="https://schema.org/" aria-label="面包屑导航">
+        
+          <li property="itemListElement" typeof="ListItem" class="crumb">
+            <a href="https://developer.mozilla.org/zh-CN/docs/Web" property="item" typeof="WebPage">
+              <span property="name">Web 技术文档</span>
+            </a>
+            <meta property="position" content="1">
+          </li>
+        
+          <li property="itemListElement" typeof="ListItem" class="crumb">
+            <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript" property="item" typeof="WebPage">
+              <span property="name">Java<wbr>Script</span>
+            </a>
+            <meta property="position" content="2">
+          </li>
+        
+          <li property="itemListElement" typeof="ListItem" class="crumb">
+            <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference" property="item" typeof="WebPage">
+              <span property="name">Java<wbr>Script 参考文档</span>
+            </a>
+            <meta property="position" content="3">
+          </li>
+        
+          <li property="itemListElement" typeof="ListItem" class="crumb">
+            <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects" property="item" typeof="WebPage">
+              <span property="name">Java<wbr>Script 标准库</span>
+            </a>
+            <meta property="position" content="4">
+          </li>
+        
+          <li property="itemListElement" typeof="ListItem" class="crumb">
+            <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object" property="item" typeof="WebPage">
+              <span property="name">Object</span>
+            </a>
+            <meta property="position" content="5">
+          </li>
+        
+        <li property="itemListElement" typeof="ListItem" class="crumb">
+          <span property="name">Object<wbr>.define<wbr>Property()</span>
+        </li>
+      </ol>
+    </nav>
+  
+                
+
+                
+
+                
+                  <!-- quick links -->
+                  
+  <div class="quick-links" id="quick-links">
+    <div class="quick-links-head">相关主题</div>
+    <ol><li><strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects">JavaScript 标准库</a></strong></li><li><strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a></strong></li><li data-default-state="open" class="toggleable current" data-closed=""><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#" class="toggler" aria-haspopup="true"><i aria-hidden="true" class="icon-caret-down"></i><strong>属性</strong></a><ol class="toggle-container" aria-expanded="true" style="display: block;"><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype" title="Object.prototype 属性表示 Object 的原型对象。"><code>Object<wbr>.prototype</code></a></li><li><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/count" title="__count__ 属性曾经用来存放对象的可枚举的属性的个数，但是已经被废除。"><code>Object<wbr>.prototype.__count__</code></a></s></li><li><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/noSuchMethod" title="__noSuchMethod__ 属性曾经是指当调用某个对象里不存在的方法时即将被执行的函数，但是现在这个函数已经不可用。"><code>Object<wbr>.prototype.__noSuch<wbr>Method__</code></a></s></li><li><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/Parent" title="指向一个对象的上下文."><code>Object<wbr>.prototype.__parent__</code></a></s></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" title="Object.prototype 的 __proto__  属性是一个访问器属性（一个getter函数和一个setter函数）, 暴露了通过它访问的对象的内部[[Prototype]] (一个对象或 null)。"><code>Object<wbr>.prototype.__proto__</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor" title="返回创建实例对象的 Object 构造函数的引用。注意，此属性的值是对函数本身的引用，而不是一个包含函数名称的字符串。对原始类型来说，如1，true和&quot;test&quot;，该值只可读。"><code>Object<wbr>.prototype<wbr>.constructor</code></a></li></ol></li><li data-default-state="open" class="toggleable current" data-closed=""><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#" class="toggler" aria-haspopup="true"><i aria-hidden="true" class="icon-caret-down"></i><strong>方法</strong></a><ol class="toggle-container" aria-expanded="true" style="display: block;"><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign" title="Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。"><code>Object<wbr>.assign()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create" title="Object.create() 方法会使用指定的原型对象及其属性去创建一个新的对象。"><code>Object<wbr>.create()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties" title="Object.defineProperties() 方法直接在一个对象上定义新的属性或修改现有属性，并返回该对象。"><code>Object<wbr>.define<wbr>Properties()</code></a></li><li><em><code>Object.defineProperty()</code></em></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/entries" title="Object.entries()返回一个数组，其元素是与直接在object上找到的可枚举属性键值对相对应的数组。属性的顺序与通过手动循环对象的属性值所给出的顺序相同。"><code>Object<wbr>.entries()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze" title="Object.freeze() 方法可以冻结一个对象，冻结指的是不能向这个对象添加新的属性，不能修改其已有属性的值，不能删除已有属性，以及不能修改该对象已有属性的可枚举性、可配置性、可写性。也就是说，这个对象永远是不可变的。该方法返回被冻结的对象。"><code>Object<wbr>.freeze()</code></a></li><li><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getNotifier" title="Object.getNotifer() 方法用于创建可人工触发 change 事件的对象，但该方法在浏览器中已被废弃。"><code>Object<wbr>.get<wbr>Notifier()</code></a></s></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor" title="Object.getOwnPropertyDescriptor() 方法返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）"><code>Object<wbr>.get<wbr>OwnProperty<wbr>Descriptor()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors" title="Object.getOwnPropertyDescriptors() 方法用来获取一个对象的所有自身属性的描述符。"><code>Object<wbr>.get<wbr>OwnProperty<wbr>Descriptors()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames" title="Object.getOwnPropertyNames()方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。"><code>Object<wbr>.get<wbr>OwnProperty<wbr>Names()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols" title="Object.getOwnPropertySymbols() 方法返回一个给定对象自身的所有 Symbol 属性的数组。"><code>Object<wbr>.get<wbr>OwnProperty<wbr>Symbols()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/GetPrototypeOf" title="Object.getPrototypeOf() 方法返回指定对象的原型（内部[[Prototype]]属性的值）。"><code>Object<wbr>.get<wbr>PrototypeOf()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is" title="Object.is()方法判断两个值是否是相同的值。"><code>Object.is()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible" title="Object.isExtensible() 方法判断一个对象是否是可扩展的（是否可以在它上面添加新的属性）。"><code>Object<wbr>.isExtensible()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen" title="Object.isFrozen()方法判断一个对象是否被冻结。"><code>Object<wbr>.isFrozen()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed" title="Object.isSealed() 方法判断一个对象是否被密封。"><code>Object<wbr>.isSealed()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys" title="Object.keys() 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 （两者的主要区别是 一个 for-in 循环还会枚举其原型链上的属性）。"><code>Object<wbr>.keys()</code></a></li><li><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/observe" title="Object.observe() 方法用于异步地监视一个对象的修改。当对象属性被修改时，方法的回调函数会提供一个有序的修改流。然而，这个接口已经被废弃并从各浏览器中移除。你可以使用更通用的 Proxy 对象替代。"><code>Object<wbr>.observe()</code></a></s></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions" title="Object.preventExtensions()方法让一个对象变的不可扩展，也就是永远不能再添加新的属性。"><code>Object<wbr>.prevent<wbr>Extensions()</code></a></li><li><span class="sidebar-icon"><span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/__defineGetter__" title="__defineGetter__ 方法可以将一个函数绑定在当前对象的指定属性上，当那个属性的值被读取时，你所绑定的函数就会被调用。"><code>Object<wbr>.prototype.__define<wbr>Getter__()</code></a></li><li><span class="sidebar-icon"><span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/__defineSetter__" title="__defineSetter__ 方法可以将一个函数绑定在当前对象的指定属性上，当那个属性被赋值时，你所绑定的函数就会被调用。"><code>Object<wbr>.prototype.__define<wbr>Setter__()</code></a></li><li><span class="sidebar-icon"><span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/__lookupGetter__" title="__lookupGetter__ 方法会返回当前对象上指定属性的属性读取访问器函数（getter）。"><code>Object<wbr>.prototype.__lookup<wbr>Getter__()</code></a></li><li><span class="sidebar-icon"><span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/__lookupSetter__" title="一个绑定了setter的特殊属性的函数引用。"><code>Object<wbr>.prototype.__lookup<wbr>Setter__()</code></a></li><li><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/eval" title="Object.eval() 方法用于在对象的上下文中对 JavaScript 代码字符串求值，但该方法已被移除。"><code>Object<wbr>.prototype<wbr>.eval()</code></a></s></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty" title="hasOwnProperty() 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性"><code>Object<wbr>.prototype<wbr>.has<wbr>OwnProperty()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf" title="isPrototypeOf() 方法用于测试一个对象是否存在于另一个对象的原型链上。"><code>Object<wbr>.prototype<wbr>.isPrototypeOf()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/propertyIsEnumerable" title="propertyIsEnumerable() 方法返回一个布尔值，表示指定的属性是否可枚举。"><code>Object<wbr>.prototype<wbr>.property<wbr>IsEnumerable()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toLocaleString" title="toLocaleString() 方法返回一个该对象的字符串表示。此方法被用于派生对象为了特定语言环境的目的（locale-specific purposes）而重载使用。"><code>Object<wbr>.prototype<wbr>.toLocale<wbr>String()</code></a></li><li><span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toSource" title="toSource()方法返回一个表示对象源代码的字符串。"><code>Object<wbr>.prototype<wbr>.toSource()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString" title="toString() 方法返回一个表示该对象的字符串。"><code>Object<wbr>.prototype<wbr>.toString()</code></a></li><li><span class="sidebar-icon"><span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></span><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/unwatch" title="unwatch() 删除一个 watch() 设置的 watchpoint."><code>Object<wbr>.prototype<wbr>.unwatch()</code></a></s></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf" title="valueOf() 方法返回指定对象的原始值。"><code>Object<wbr>.prototype<wbr>.valueOf()</code></a></li><li><span class="sidebar-icon"><span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></span><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/watch" title="undefined."><code>Object<wbr>.prototype<wbr>.watch()</code></a></s></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/seal" title="Object.seal() 方法可以让一个对象密封，并返回被密封后的对象。密封对象将会阻止向对象添加新的属性，并且会将所有已有属性的可配置性（configurable）置为不可配置（false），即不可修改属性的描述或删除属性。但是可写性描述（writable）为可写（true）的属性的值仍然可以被修改。"><code>Object<wbr>.seal()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf" title="如果对象的[[Prototype]]被修改成不可扩展(通过 Object.isExtensible()查看)，就会抛出 TypeError异常。如果prototype参数不是一个对象或者null(例如，数字，字符串，boolean，或者 undefined)，则什么都不做。否则，该方法将obj的[[Prototype]]修改为新的值。"><code>Object<wbr>.set<wbr>PrototypeOf()</code></a></li><li><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/unobserve" title="Object.unobserve() 是用来移除通过 Object.observe()设置的观察者的方法。"><code>Object<wbr>.unobserve()</code></a></s></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/values" title="Object.values()方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用for...in循环的顺序相同 ( 区别在于 for-in 循环枚举原型链中的属性 )。"><code>Object<wbr>.values()</code></a></li></ol></li><li><strong>继承</strong></li><li><strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>Function</code></a></strong></li><li class="toggleable" data-closed="true"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#" class="toggler" aria-haspopup="true"><i aria-hidden="true" class="icon-caret-right"></i><strong>属性</strong></a><ol class="toggle-container" style="display: none;"><li><span class="sidebar-icon"><span title="This deprecated API should no longer be used, but will probably still work."><i class="icon-thumbs-down-alt"> </i></span></span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/arguments" title="function.arguments 属性代表传入函数的实参，它是一个类数组对象。"><code>Function<wbr>.arguments</code></a></li><li><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/arity" title="返回一个函数的形参数量."><code>Function<wbr>.arity</code></a></s></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/caller" title="返回调用指定函数的函数."><code>Function<wbr>.caller</code></a></li><li><span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/displayName" title="function.displayName属性获取函数的显示名称"><code>Function<wbr>.display<wbr>Name</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/length" title=""><code>Function<wbr>.length</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/name" title="name 属性返回一个函数声明的名称。"><code>Function<wbr>.name</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype" title="Function.prototype 属性存储了 Function 的原型对象。"><code>Function<wbr>.prototype</code></a></li></ol></li><li class="toggleable" data-closed="true"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#" class="toggler" aria-haspopup="true"><i aria-hidden="true" class="icon-caret-right"></i><strong>方法</strong></a><ol class="toggle-container" style="display: none;"><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" title="apply() 方法调用一个函数, 其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数。"><code>Function<wbr>.prototype<wbr>.apply()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" title="bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列。"><code>Function<wbr>.prototype<wbr>.bind()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call" title="call() 方法调用一个函数, 其具有一个指定的this值和分别地提供的参数(参数的列表)。"><code>Function<wbr>.prototype<wbr>.call()</code></a></li><li><span class="sidebar-icon"><span title="This API has not been standardized."><i class="icon-warning-sign"> </i></span></span><span class="sidebar-icon"><span title="This is an obsolete API and is no longer guaranteed to work."><i class="icon-trash"> </i></span></span><s class="obsoleteElement"><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/isGenerator" title="判断一个函数是否是一个生成器."><code>Function<wbr>.prototype<wbr>.isGenerator()</code></a></s></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/toSource" title="返回函数的源代码的字符串表示."><code>Function<wbr>.prototype<wbr>.toSource()</code></a></li><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/toString" title="该 toString() 方法返回一个表示当前函数源代码的字符串。"><code>Function<wbr>.prototype<wbr>.toString()</code></a></li></ol></li></ol>
+  </div>
+                
+
+                <!-- approvals -->
+                
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div> <!-- ends "main-content" -->
+
+    
+      <div class="newsletter-box">
+        <div class="newsletter">
+    <form id="newsletterForm" class="newsletter-form nodisable" name="newsletter-form" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+        <div class="newsletter-head">
+            <h2 class="newsletter-teaser">学习 Web 开发的最佳实践</h2>
+            <p class="newsletter-description">让 MDN 将最新、最棒的内容直接投递到您的邮箱。</p>
+            
+            <p class="newsletter-lang">目前只能提供英文的新闻报。</p>
+            
+        </div>
+
+        <div class="newsletter-fields">
+            <input type="hidden" id="fmt" name="fmt" value="H">
+            <input type="hidden" id="newsletterNewslettersInput" name="newsletters" value="app-dev">
+            <div id="newsletterErrors" class="newsletter-errors"></div>
+
+            <div id="newsletterEmail" class="form-group newsletter-group-email">
+                <label for="newsletterEmailInput" class="form-label offscreen">电子邮件地址</label>
+                <input type="email" id="newsletterEmailInput" name="email" class="form-input newsletter-input-email" required="" placeholder="you@example.com" size="30">
+            </div>
+
+            <div id="newsletterPrivacy" class="form-group form-group-agree newsletter-group-privacy hidden">
+                <input type="checkbox" id="newsletterPrivacyInput" name="privacy" required="">
+                <label for="newsletterPrivacyInput">
+                我接受 Mozilla 按照<a href="https://www.mozilla.org/privacy/">隐私政策</a>所述的方式处理我的信息。
+                </label>
+            </div>
+            <div id="newsletterSubmit" class="newsletter-group-submit">
+                <button id="newsletter-submit" type="submit" class="button neutral newsletter-submit">立即注册</button>
+            </div>
+        </div>
+    </form>
+    <div id="newsletterThanks" class="newsletter-thanks hidden">
+        <h2>谢谢！请检查您的收件箱以确认您的订阅。</h2>
+        <p>如果您以前未确认过订阅 Mozilla 相关的新闻简报，您可能必须这样做。请检查您的收件箱或垃圾邮件箱，找到我们发给您的电子邮件。
+        </p>
+    </div>
+    <button id="newsletterHide" type="button" class="only-icon newsletter-hide"><span>隐藏新闻报注册</span><i aria-hidden="true" class="icon-times"></i></button>
+</div>
+      </div>
+    
+
+  <menu type="context" id="edit-history-menu">
+    <menuitem data-action="/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty$edit" label="编辑页面"></menuitem>
+    <menuitem data-action="/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty$history" label="查看页面历史"></menuitem>
+  </menu>
+
+      </div>
+  </main>
+  <!-- Footer -->
+    <footer id="nav-footer" class="nav-footer">
+      <div class="center">
+          <a href="https://developer.mozilla.org/zh-CN/" class="nav-footer-logo">MDN Web 文档</a>
+          <div class="footer-group footer-group-mdn">
+            <h2 class="footer-title">MDN</h2>
+            <ul class="footer-list">
+              <li><a href="https://developer.mozilla.org/zh-CN/docs/Web">网络技术</a></li>
+              <li><a href="https://developer.mozilla.org/zh-CN/docs/Learn">了解 Web 开发</a></li>
+              <li><a href="https://developer.mozilla.org/docs/MDN/About">关于 MDN</a></li>
+              <li><a href="https://developer.mozilla.org/zh-CN/docs/MDN/Feedback">反馈</a></li>
+              <li class="footer-social"><a href="https://twitter.com/mozdevnet" class="only-icon"><i aria-hidden="true" class="icon-twitter"></i> <span>Twitter</span></a></li>
+              <li class="footer-social"><a href="https://github.com/mdn/" class="only-icon"><i aria-hidden="true" class="icon-github"></i> <span>GitHub</span></a></li>
+            </ul>
+          </div>
+
+          <a href="https://mozilla.org/" class="nav-footer-mozilla">Mozilla</a>
+          <div class="footer-group footer-group-mozilla">
+            <h2 class="footer-title">Mozilla</h2>
+            <ul class="footer-list">
+              <li><a href="https://www.mozilla.org/about/">关于</a></li>
+              <li><a href="https://www.mozilla.org/contact/">联系我们</a></li>
+              <li><a href="https://donate.mozilla.org/?utm_source=developer.mozilla.org&amp;utm_medium=referral&amp;utm_content=footer">捐款</a></li>
+              <li><a href="https://www.mozilla.org/firefox/?utm_source=developer.mozilla.org&amp;utm_campaign=footer&amp;utm_medium=referral">Firefox</a></li>
+              <li class="footer-social"><a href="https://twitter.com/mozilla" class="only-icon"><i aria-hidden="true" class="icon-twitter"></i> <span>Twitter</span></a></li>
+              <li class="footer-social"><a href="https://www.facebook.com/mozilla" class="only-icon"><i aria-hidden="true" class="icon-facebook"></i> <span>Facebook</span></a></li>
+              <li class="footer-social"><a href="https://www.instagram.com/mozillagram/" class="only-icon"><i aria-hidden="true" class="icon-instagram"></i> <span>Instagram</span></a></li>
+            </ul>
+          </div>
+
+          
+  
+    <form class="languages go" method="get" action="https://developer.mozilla.org/zh-CN/docs/Web">
+      <label for="language">其他语言：</label>
+      <select id="language" class="wiki-l10n" name="next" dir="ltr">
+        <option title="简体中文" data-locale="zh-CN" value="/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" selected="">
+          中文 (简体) (zh-CN)
+        </option>
+        
+          <option title="英语 (美国)" data-locale="zh-CN" value="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            English (US) (en-US)
+          </option>
+          <option title="德语" data-locale="zh-CN" value="/de/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            Deutsch (de)
+          </option>
+          <option title="西班牙语" data-locale="zh-CN" value="/es/docs/Web/JavaScript/Referencia/Objetos_globales/Object/defineProperty">
+            Español (es)
+          </option>
+          <option title="法语" data-locale="zh-CN" value="/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/defineProperty">
+            Français (fr)
+          </option>
+          <option title="印尼语" data-locale="zh-CN" value="/id/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            Bahasa Indonesia (id)
+          </option>
+          <option title="意大利语" data-locale="zh-CN" value="/it/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            Italiano (it)
+          </option>
+          <option title="日语" data-locale="zh-CN" value="/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            日本語 (ja)
+          </option>
+          <option title="朝鲜语" data-locale="zh-CN" value="/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            한국어 (ko)
+          </option>
+          <option title="荷兰语" data-locale="zh-CN" value="/nl/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            Nederlands (nl)
+          </option>
+          <option title="葡萄牙语 (巴西)" data-locale="zh-CN" value="/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            Português (do&nbsp;Brasil) (pt-BR)
+          </option>
+          <option title="葡萄牙语 (葡萄牙)" data-locale="zh-CN" value="/pt-PT/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            Português (Europeu) (pt-PT)
+          </option>
+          <option title="俄语" data-locale="zh-CN" value="/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            Русский (ru)
+          </option>
+          <option title="土耳其语" data-locale="zh-CN" value="/tr/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            Türkçe (tr)
+          </option>
+          <option title="乌克兰语" data-locale="zh-CN" value="/uk/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            Українська (uk)
+          </option>
+          <option title="越南语" data-locale="zh-CN" value="/vi/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            Tiếng Việt (vi)
+          </option>
+          <option title="繁体中文" data-locale="zh-CN" value="/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">
+            正體中文 (繁體) (zh-TW)
+          </option>
+      </select>
+      <noscript>&lt;button type="submit"&gt;转到&lt;/button&gt;</noscript>
+    </form>
+  
+
+
+          
+            <ul class="footer-tos">
+              <li><a href="https://www.mozilla.org/about/legal/terms/mozilla">条款</a></li>
+              <li><a href="https://www.mozilla.org/privacy/websites/">隐私</a></li>
+              <li><a href="https://www.mozilla.org/privacy/websites/#cookies">Cookie</a></li>
+            </ul>
+
+            <div id="license" class="contentinfo">
+              <p>© 2005-2018 Mozilla 及各贡献者</p> <p>内容可按<a href="https://developer.mozilla.org/en-US/docs/MDN/About#Copyrights_and_licenses">这些许可协议</a>使用。</p>
+            </div>
+          
+      </div>
+    </footer> 
+
+  <!-- site js -->
+  
+    
+    <!--[if lte IE 8]><script type="text/javascript" src="https://cdn.mdn.mozilla.net/static/build/js/selectivizr.091e18cf669b.js" charset="utf-8"></script><![endif]-->
+
+    
+    <script type="text/javascript" src="./Object.defineProperty() - JavaScript _ MDN_files/javascript.559fa2814623.js"></script>
+    <script type="text/javascript" src="./Object.defineProperty() - JavaScript _ MDN_files/main.2b11b2c2fae5.js" charset="utf-8"></script>
+    <script>
+    if (window.mdn && mdn.analytics) mdn.analytics.trackOutboundLinks();
+</script>
+    
+
+  
+
+    <script async="" type="text/javascript" src="./Object.defineProperty() - JavaScript _ MDN_files/wiki.c60705233ffd.js" charset="utf-8"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+    <script async="" type="text/javascript" src="./Object.defineProperty() - JavaScript _ MDN_files/newsletter.7cd3274169f2.js" charset="utf-8"></script>
+  
+
+
+
+</body></html>
