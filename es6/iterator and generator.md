@@ -7,7 +7,7 @@
 特点
 1. 使用for-of结合迭代器，轻松访问所有元素(其实for of就是再循环内执行了iterator的next，将value赋给标识符)
 2. 所有的集合类型（数组、Map、Set）都具有迭代器，字符串同样有一个默认迭代器，可以轻松地迭代其中的字符。
-3. *生成器委托*促进了对多个迭代器的良好封装。方法是在一个新的迭代器中使用`yeild *othenIterator`.
+3. *生成器委托* 促进了对多个迭代器的良好封装。方法是在一个新的迭代器中使用`yeild *othenIterator`.
 
 # iterator是什么
 es6定义了两个新的协议：`iterable`和`iterator`

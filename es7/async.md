@@ -29,3 +29,4 @@ async function getProcessedData(url) {
 }
 ```
 
+> Just as Promises are similar to structured callbacks, async/await is similar to combining generators and promises.
