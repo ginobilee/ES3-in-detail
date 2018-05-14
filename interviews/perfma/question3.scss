@@ -1,0 +1,14 @@
+
+// 3
+
+@mixin triangle($width: 100px, $rotate: 30deg, $color: black){
+    width: 0;
+    height: 0;
+
+    transform:rotate($rotate);
+    
+    border-top: 0 solid rgba(0,0,0,0);
+    border-right: $width solid  rgba(0,0,0,0);
+    border-bottom: $width solid $color;
+    border-left: $width solid  rgba(0,0,0,0);
+}
