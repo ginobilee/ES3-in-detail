@@ -1,0 +1,1 @@
+> 一个JavaBean和一个JavaApplet相似，是一个非常简单的遵循某种严格协议的Java类。每个JavaBean的功能都可能不一样，但它们都必须支持以下特征。

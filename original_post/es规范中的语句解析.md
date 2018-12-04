@@ -1,0 +1,2 @@
+> The source text of an ECMAScript program is first converted into a sequence of input elements, which are tokens, line terminators, comments, or white space. The source text is scanned from left to right, repeatedly taking the longest possible sequence of characters as the next input element.
+从左到右解析输入，以最长的可识别序列拆分成四种元素: token、行结束符、注释、空白符。

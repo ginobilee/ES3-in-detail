@@ -46,3 +46,8 @@ cherry-pick能不能replay多条记录？
 
 
 使用 git rebase [basebranch] [topicbranch] 命令可以直接将特性分支（即本例中的 server）变基到目标分支（即 master）上。这样做能省去你先切换到 server 分支，再对其执行变基命令的多个步骤。
+
+
+rebase vs merge
+
+One best practise is to use the commands at different points. Use rebase when you are updating your local code repository with the latest code from the remote repository. Use merge when you are dealing with pull requests to merge the Feature branch back with the Release or Master branch.
