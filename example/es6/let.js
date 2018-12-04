@@ -1,6 +1,6 @@
 // 'let' won't hoist the variable.
 console.log(typeof a);
 
-// let a = "aa";
+var a = "aa";
 
 // const b

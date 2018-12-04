@@ -2,7 +2,7 @@ var x = 10;
 let foo = {
   x: 20,
   // 动态 `this`.
-  bar() {
+  bar: function() {
     return this.x;
   },
   // 词法 `this`.

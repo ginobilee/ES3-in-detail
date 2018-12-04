@@ -42,9 +42,9 @@ console.log([
   objectFromConstruct.a // 40, from F.prototype === objectFromConstruct.[[Prototype]]
 ]);
 
-/* instance of BoundFunction will not have properties of BoundFunction.prototype, 
+ instance of BoundFunction will not have properties of BoundFunction.prototype, 
    but of original function's prototype 
-*/
+
 console.log(BoundF.prototype); // undefined
 
 BoundF.prototype = {
