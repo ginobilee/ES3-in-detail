@@ -15,15 +15,15 @@ bar(); // 0
 foo = 9;
 bar(); // this won't change, since bar has already been referd to 'the' function.
 */
-var foo = {
-  bar: (function(x) {
-    console.log("bar");
-    return x % 2 != 0 ? "yes" : "no";
-  })(1)
-};
-console.log("1");
-console.log(foo.bar); // 'yes'
-console.log(foo.bar);
+// var foo = {
+//   bar: (function(x) {
+//     console.log("bar")
+//     return x % 2 != 0 ? "yes" : "no"
+//   })(1)
+// }
+// console.log("1")
+// console.log(foo.bar) // 'yes'
+// console.log(foo.bar)
 /*
 1,
   (function() {
@@ -102,3 +102,31 @@ if (true) {
 
 foo(); // 0 in both Node.js and Chrome.
 */
+
+// 函数a内声明的函数b，在每次a执行时都会重新生成，并不相等
+// const log = console.log
+// var count = 0
+// function a() {
+//   function b() {}
+//   return b
+//   if (count > 0) {
+//     log(b === c)
+//   } else {
+//     count = 1
+//     return b
+//   }
+// }
+// var c1 = a()
+// var c2 = a()
+// log(c1 === c2)
+var p = (function(a) {
+  this.a = a
+  return function(b) {
+    return this.a + b
+  }
+})(
+  (function(a, b) {
+    return a
+  })(1, 2)
+)
+console.log(p(4))

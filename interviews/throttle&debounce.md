@@ -2,7 +2,7 @@
 
 throttle节流：在指定时间内如果多次触发只执行一次，但至少执行一次
 
-debounce防抖：在指定时间内如果再次出发，则推迟执行，直到timeout内无再次出发才执行。
+debounce防抖：在指定时间内如果再次触发，则推迟执行，直到timeout内无再次出发才执行。
 
 
 > As a rule of thumb, I would use requestAnimationFrame if your JavaScript function is "painting" or animating directly properties, use it at everything that involves re-calculating element positions.

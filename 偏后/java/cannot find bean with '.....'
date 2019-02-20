@@ -1,0 +1,3 @@
+cannot find bean with '.....'
+
+最后在该类上加了个`@Component`注解就好了。

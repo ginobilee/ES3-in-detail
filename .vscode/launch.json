@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/interviews/perfma/format.js"
+      "program": "${workspaceFolder}/example/algo/hash/reverseHash.js"
     }
   ]
 }

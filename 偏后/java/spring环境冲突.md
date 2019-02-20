@@ -1,0 +1,9 @@
+在sibyl工程中，有两个SpringBootApplication注解，一个是面向前端的工程，以SibylApplication.class为入口，它会起一个工程，为前端调用提供接口去执行测试。
+
+另外一个是TestNG的SpringBootApplication。它在执行测试时也会起一个Spring环境。
+
+于是在开启面向前端的工程后，当通过http请求访问该服务，再次调用testng时，testng也会开启一个spring环境，于是在idea中报错。
+
+而在他人(yik)的电脑上没有出现该问题。最后经查是在idea中run工程时有一个configuration，这个设置中会开启jwx检查。这个检查是一个运行时的检查，在一些情况下就会报错，比如在idea中检测到有两个spring服务开启，于是报错。
+
+检测到这个问题的途径是，将文件打包后用java命令开启服务，就不会报错。

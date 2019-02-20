@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      body{
+        color: red;
+      }
+      #parent{
+        /* background-color: wheat; */
+        /* display: flex; */
+        /* height: 100vh; */
+        /* align-items: center; */
+        /* justify-content: center; */
+      }
+      div{
+        border: 1px solid red;
+        height: 50px;
+      }
+      .animation{
+        animation: mymove 2s infinite;
+      }
+      @keyframes mymove
+          {
+            0% {transform: translateX(0px);width: 100px}
+            50% {transform: translateX(200px); width: 0px} 
+            100% {transform: translateX(0px); width: 100px}
+          }
+      #parent{
+        /* clear: both; */
+        border:1px solid;
+        height: 400px;
+      }
+      #child{
+        width: 100%;
+        /* position: relative; */
+        float: left;
+        top: 50%;
+        /* margin-top: 50%; */
+        transform: translateY(-50%);
+      }
+      p{
+        background-color: aqua;
+        margin: auto;
+        /* margin-top: -50px; */
+        /* position: relative; */
+        /* top: -50px; */
+      }
+      ul{
+        list-style-position: outside;
+      }
+      li{
+        border: 1px solid gray;
+      }
+      li:first-of-type{
+        list-style-position: inside
+
+      }
+    </style> 
+    <!-- <link  href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap-grid.css" rel="stylesheet"> -->
+    <script>
+      function measureCRP() {
+        var t = window.performance.timing,
+          interactive = t.domInteractive - t.domLoading,
+          dcl = t.domContentLoadedEventStart - t.domLoading,
+          complete = t.domComplete - t.domLoading;
+        var stats = document.createElement('p');
+        stats.textContent = 'interactive: ' + interactive + 'ms, ' +
+            'dcl: ' + dcl + 'ms, complete: ' + complete + 'ms';
+        document.body.appendChild(stats);
+      }
+    </script>
+  </head>
+  
+  <body onload="measureCRP()">
+    <!-- <div class="animation"></div> -->
+    <!-- <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.js"></script> -->
+    last
+    <!-- <div>
+      <p class="neg">p</p>
+      a div
+    </div>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+    </ul> -->
+    <!-- <button class="close">button</button> -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.css" rel="stylesheet">
+  </body>
+</html>

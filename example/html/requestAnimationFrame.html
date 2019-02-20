@@ -1,0 +1,193 @@
+<html>
+<head>
+    <style>
+        #searchBox{
+            position: relative;
+        }
+    </style> 
+</head>
+
+<body>
+  <div id='con'>this is con</div>
+  <script>
+//     var con = document.getElementById('con');
+//     var i = 0;
+//     var raf =  function(){
+//       console.log('raf function executed')
+//       requestAnimationFrame(function() {
+//         console.log('animation frame callback executed')
+//         // 这时候再触发的promise，是不是已经不会在当前的这个loop执行了？因为 microtask的检查点已经执行过了。
+//         con.textContent = i;
+//         // 加入一个setTimeout, 它触发的时候一定是一个新的eventloop
+//         setTimeout(function() {
+//           console.log('setTimeout pushed in requestAnimationFrame been executing: ')
+//           Promise.resolve().then(function() {
+//             console.log('promise resolved in requestAnimationFrame.setTimeout been executing: ', i)
+//           })
+//         })
+//         Promise.resolve().then(function(){
+//           console.log('promise resolved in requestAnimationFrame been executing: ', i)
+//           // i++;
+//           // if(i < 3) raf();
+//         });
+//       });
+//     }
+//     con.onclick = function click1() {
+//       // setTimeout(function setTimeout1() {
+//       //         con.textContent = 0;
+//       // }, 0)
+//       // setTimeout(function setTimeout2() {
+//       //         con.textContent = 1;
+//       // }, 0)
+//       raf()
+//       Promise.resolve(1).then(res => {
+//         console.log('promise in onclick callback fired: ', res)
+//       })
+//     };
+
+// /**
+//  * expected result:
+//  * 1. raf function executed
+//  * 2. promise in onclick callback fired: 
+//  * 3. animation frame callback executed
+//  * 4. setTimeout pushed in requestAnimationFrame been executing:
+//  * 5. promise resolved in requestAnimationFrame been executing: 
+//  * 6. promise resolved in requestAnimationFrame.setTimeout been executing:
+//  * */
+
+// var con = document.getElementById('con');
+//     var i = 0;
+//     var raf =  function(){
+//       console.log('raf function executed')
+//       requestAnimationFrame(function(current) {
+//         console.log('animation frame callback executed: ', current)
+//         // 这时候再触发的promise，是不是已经不会在当前的这个loop执行了？因为 microtask的检查点已经执行过了。
+//         con.textContent = i;
+//         // 在 requestAnimationFrame 的回调里，
+//         requestAnimationFrame(function(time) {
+//           console.log('animation frame callback set in requestAnimationFrame executed: ', time)
+//         })
+//         // 加入一个setTimeout, 它触发的时候一定是一个新的eventloop
+//         setTimeout(function() {
+//           console.log('setTimeout pushed in requestAnimationFrame been executing: ')
+//           con.textContent = 'setTimeout'
+//           Promise.resolve().then(function() {
+//             console.log('promise resolved in requestAnimationFrame.setTimeout been executing: ', i)
+//           })
+//         }, 0)
+//         Promise.resolve().then(function(){
+//           console.log('promise resolved in requestAnimationFrame been executing: ', i)
+//           // i++;
+//           // if(i < 3) raf();
+//         });
+        
+//       });
+//     }
+//     con.onclick = function click1() {
+//       // setTimeout(function setTimeout1() {
+//       //         con.textContent = 0;
+//       // }, 0)
+//       // setTimeout(function setTimeout2() {
+//       //         con.textContent = 1;
+//       // }, 0)
+//       raf()
+//       Promise.resolve(1).then(res => {
+//         console.log('promise in onclick callback fired: ', res)
+//       })
+//     };
+    var con = document.getElementById('con');
+    var i = 0;
+    con.onclick = function click1() {
+
+    // Promise.resolve(333).then(console.log)
+      // 如果microtask 递归调用会怎么样？
+      const produceResolvedPromise = () => {
+        while(i++<2) {
+
+        Promise.resolve(i)
+          .then((i) => {
+                  console.log(i)
+            produceResolvedPromise()
+            requestAnimationFrame(function(time) {
+              console.log(`animation ${i}: ${time}`)
+              Promise.resolve().then(() => {
+                console.log(`animation ${i} promise fire`)
+              })
+            })
+          })
+        }
+      }
+      produceResolvedPromise()
+
+
+      // event loop 会控制 js engine 的执行
+      // while(i < 50) {
+      //   i++
+      //   setTimeout(function() {
+      //     console.log(i)
+      //     con.textContent = i
+      //   })
+      // }
+
+
+      // setTimeout(() => {
+      //   console.log(1)
+      //   con.textContent = 1;
+      //   requestAnimationFrame(function(time) {
+      //     console.log('request animation frame 1 fire: ', time)
+
+      //     setTimeout(() => {
+      //       console.log(12)
+      //     });
+      //   })
+      // }, 10);
+      // setTimeout(() => {
+      //   console.log(2)
+      //   con.textContent = 2;
+      //   requestAnimationFrame(function(time) {
+      //     console.log('request animation frame 2 fire: ', time)
+
+      //     setTimeout(() => {
+      //       console.log(22)
+      //     }, 2);
+      //   })
+      // }, 1);
+
+
+      // requestAnimationFrame(function(time) {
+      //   console.log(time)
+      //   requestAnimationFrame(function(t) {
+      //     console.log(t)
+      //   })
+      // })
+
+
+      // setTimeout(() => {
+      //   console.log(2)
+      // }, 2);
+      // setTimeout(() => {
+      //   console.log(3)
+      // }, 3);
+      // requestAnimationFrame(function(time) {
+      //   console.log('animation call back 1: ', time)
+      //   setTimeout(() => {
+      //     console.log('timer in requestAnimationFrame')
+      //   })
+      // })
+      // requestAnimationFrame(function(time) {
+      //   console.log('animation call back 2: ', time)
+      //   const startTime = Date.now()
+      //     while(Date.now() < (startTime + 1 * 1000)) {
+
+      //     }
+      // })
+      // requestAnimationFrame(function(time) {
+      //   console.log('animation call back 3: ', time)
+      // })
+      // Promise.resolve().then(() => {
+      //   console.log('promise fire')
+      // })
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      body{
+        color: red;
+      }
+      #parent{
+        /* background-color: wheat; */
+        /* display: flex; */
+        /* height: 100vh; */
+        /* align-items: center; */
+        /* justify-content: center; */
+      }
+      div{
+        border: 1px solid red;
+        height: 50px;
+      }
+      .animation{
+        animation: mymove 2s infinite;
+      }
+      @keyframes mymove
+          {
+            0% {transform: translateX(0px);width: 100px}
+            50% {transform: translateX(200px); width: 0px} 
+            100% {transform: translateX(0px); width: 100px}
+          }
+      #parent{
+        /* clear: both; */
+        border:1px solid;
+        height: 400px;
+      }
+      #child{
+        width: 100%;
+        /* position: relative; */
+        float: left;
+        top: 50%;
+        /* margin-top: 50%; */
+        transform: translateY(-50%);
+      }
+      p{
+        background-color: aqua;
+        margin: auto;
+        margin-top: -50px;
+        /* position: relative; */
+        /* top: -50px; */
+      }
+      ul{
+        list-style-position: outside;
+      }
+      li{
+        border: 1px solid gray;
+      }
+      li:first-of-type{
+        list-style-position: inside
+
+      }
+    </style> 
+    <!-- <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.css" rel="stylesheet"> -->
+    <!-- <link  href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap-grid.css" rel="stylesheet"> -->
+    <script defer src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.bundle.js"></script>
+    <script defer src="https://cdn.bootcss.com/vue/2.6.3/vue.common.dev.js"></script>
+    <script defer src="https://cdn.bootcss.com/vue/2.6.3/vue.common.js"></script>
+
+    <script defer src="https://cdn.bootcss.com/vue/2.6.3/vue.common.prod.js"></script>
+    <script defer src="https://cdn.bootcss.com/vue/2.6.3/vue.esm.browser.js"></script>
+    <script defer src="https://cdn.bootcss.com/vue/2.6.3/vue.esm.browser.min.js"></script>
+    <script defer src="https://cdn.bootcss.com/vue/2.6.3/vue.esm.js"></script>
+    <script defer src="https://cdn.bootcss.com/vue/2.6.3/vue.js"></script>
+    <script defer src="https://cdn.bootcss.com/vue/2.6.3/vue.min.js"></script>
+    <script defer src="https://cdn.bootcss.com/vue/2.6.3/vue.runtime.common.dev.js"></script>
+  </head>
+  
+  <body>
+    <div class="animation"></div>
+    last
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550078773734&di=49ab9f9cba7f0adf6d78bd5a8623fdc6&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fdbb44aed2e738bd40ecbcd14ab8b87d6277ff929.jpg" />
+    <img src='https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1628832912,3219060281&fm=26&gp=0.jpg' />
+    <!-- <div>
+      <p class="neg">p</p>
+      a div
+    </div>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+    </ul> -->
+    <!-- <button class="close">button</button> -->
+  </body>
+</html>

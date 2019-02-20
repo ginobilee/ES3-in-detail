@@ -1,0 +1,3 @@
+libuv
+
+> First I want to differ the conceptions of event loop and event loop iteration. Event loop is a task queue which bind with a single thread, they are one-to-one relation. Event loop iteration is the procedure when the runtime check for task (piece of code) queued in event loop and execute it. The two conceptions map tp two important function / object in libuv. One is uv_loop_t, which represent for one event loop object and API: uv_run , which can be treated as the entry point of event loop iteration. All functions in libuv named starts with uv_, which really make reading the source code easy.

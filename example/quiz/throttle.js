@@ -6,7 +6,7 @@ const throttle = (cb, timeout) => {
   // 用params来存储每次传入的参数。
   // 当在timeout之内发生调用更新params，重新计算要触发的时延，取消之前的settimeout并重新设置settimeout
   // 'firstCalled' is the flag means this is the first time the cb is clicked in timeout
-  let lastTickTime,
+  let lastTickTime, context,
     firstCalled = true,
     params = [],
     ti;
@@ -17,15 +17,15 @@ const throttle = (cb, timeout) => {
       firstCalled = true;
       // should believe cb has been called . set new lastTickTime and setTimeout
       lastTickTime = newTime;
-      const that = this;
-      ti = setTimeout(cb.bind(that, params), timeout);
+      context = this;
+      ti = setTimeout(cb.bind(context, params), timeout);
     } else {
       // called again in timeout
       let newTimeout = timeout - (newTime - lastTickTime);
       if (ti) {
         clearTimeout(ti);
       }
-      ti = setTimeout(cb.bind(that, params), newTimeout);
+      ti = setTimeout(cb.bind(context, params), newTimeout);
     }
   };
 };

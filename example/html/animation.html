@@ -1,0 +1,140 @@
+<html>
+<head>
+    <style>
+        div
+          {
+          width:100px;
+          height:100px;
+          background:red;
+          position:relative;
+          /* transform: translateX(300px) */
+          }
+          #animation{
+          /* animation:mymove 5s infinite; */
+
+          }
+          #width{
+            /* will-change: transform, width;
+            animation: widthmove 5s infinite; */
+          }
+
+          /* @keyframes mymove
+          {
+            0% {left:0px;}
+            50% {left:200px;} 
+            100% {left: 0px;}
+          } */
+          @keyframes widthmove
+          {
+            0% {transform: translateX(0px);width: 100px}
+            50% {transform: translateX(200px); width: 0px} 
+            100% {transform: translateX(0px); width: 100px}
+          }
+          @keyframes mymove
+          {
+            0% {transform: translateX(0px) scaleX(1)}
+            50% {transform: translateX(200px) scaleX(0)} 
+            100% {transform: translateX(0px) scaleX(1)}
+          }
+          /* @keyframes mymove
+          {
+            0% {opacity: 0;}
+            50% {opacity: 1;} 
+            100% {opacity: 0;}
+          } */
+    </style> 
+</head>
+
+<body>
+  <div id='animation'></div>
+  <div id='width'></div>
+  <script>
+    const elem = document.getElementById('animation')
+    const animation = elem.getAnimations()[0]
+    const style = elem.style
+    const limit = 200
+    let current = 0, l2r = true 
+    // setTimeout(() => {
+    //   while(1) {}
+    // }, 100);
+    requestAnimationFrame(function(time) {
+      console.log('animation')
+    })
+
+    elem.addEventListener('click', function() {
+      var raf = () => requestAnimationFrame(function(time) {
+        console.log('raf fire: ', time)
+        raf()
+      })
+      raf()
+    })
+
+    // const animations = elem.getAnimations()
+    // console.log(animations)
+    // const isAnimating = elem.getAnimations().some(
+    //   animation => animation.playState === 'running'
+    // );
+    // console.log(isAnimating)
+
+    // setTimeout(function() {
+    //   animations && animations.forEach(
+    //     animation => animation.pause()
+    //   );
+    // }, 1000)
+    // elem.animate({ transform: 'scale(0)', opacity: 0 }, 300);
+    // animation.play();
+    // animation.ready.then(
+    //   () => { console.log('Playback commenced'); },
+    //   () => { console.log('Playback was canceled'); }
+    // );
+
+
+
+    // const raf = function() {
+    //   requestAnimationFrame(function(time) {
+    //     if (current >= 200) {
+    //       l2r = false
+    //     } else if (current === 0) {
+    //       l2r = true
+    //     }
+    //     if (l2r) {
+    //       current += 2
+    //     } else {
+    //       current -= 2
+    //     }
+    //     style.transform = `translateX(${current}px)`
+    //     // style.left = `${current}px`
+    //     console.log('animation frame callback fired: ', time)
+    //     raf()
+    //   })
+    // }
+    // raf()
+    
+// <!-- 
+//     const INTERVAL = 1000 / 60
+//     // const requestAnimationFrame = fn => setTimeout(fn, INTERVAL);
+
+//     const raf = function() {
+//       setTimeout(function(time) {
+//         if (current >= 200) {
+//           l2r = false
+//         } else if (current === 0) {
+//           l2r = true
+//         }
+//         if (l2r) {
+//           current += 2
+//         } else {
+//           current -= 2
+//         }
+//         let opacity = current / 200
+//         // style.opacity = opacity
+//         // style.transform = `translateX(${current}px)`
+//         style.left = `${current}px`
+//         console.log('animation frame callback fired: ', time)
+//         raf()
+//       }, INTERVAL)
+//     }
+//     raf() -->
+  </script>
+</body>
+</html>

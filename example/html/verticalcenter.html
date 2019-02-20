@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      /* 方式一: 父元素中 position: relative; 子元素 position: absolute; top: 50%; transform: translateY(-50%);
+         原理是: 元素的 top 以百分比计算时，基准是父元素的 height
+        .container{
+          position: relative;
+          height: 400px;
+          border-color: red;
+        }
+        .content{
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+       */
+
+      /* 方式二: 父元素同一。子元素设定一个高度(可以为数值或百分比)后，设置 top: 0; bottom: 0; margin: auto 0;
+         原理:   为元素设置高度和 top;bottom 为0后，当元素的 margin 为 auto，会自动计算其居中
+        .container{
+          position: relative;
+          height: 400px;
+          border-color: red;
+        }
+        .content{
+          position: absolute;
+          height: 50px;
+          top: 0;
+          bottom: 0;
+          margin: auto 0;
+        }
+        */
+
+      div{
+        border: 1px solid;
+      }
+      .container{
+        height: 400px;
+        border-color: red;
+      }
+      .content{
+        float: left;
+        height: 50px;
+        top: 50px;
+        left: 50px;
+        margin-left: 50%;
+        /* transform: translateY(-50%); */
+        /* margin: auto; */
+      }
+    </style> 
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="content">content</div>
+    </div>
+  </body>
+</html>

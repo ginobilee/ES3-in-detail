@@ -8,7 +8,7 @@ Virtual dom中，一个节点的变化类型有哪些？
 
 如何用react开发一个应用？
 
-有没有了解过redux-saga／redux-think()
+有没有了解过redux-saga／redux-thunk()
 
 react和vue的比较
 

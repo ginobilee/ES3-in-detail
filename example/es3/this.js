@@ -71,11 +71,41 @@ foo.bar(); // Reference, OK => foo
 })(); // global
 */
 
-var a = new Number(4);
-const b = {};
-console.log(b.toString());
-console.log(a.valueOf());
-a.test = function() {
-  console.log(this);
-};
-a.test();
+// var a = new Number(4);
+// const b = {};
+// console.log(b.toString());
+// console.log(a.valueOf());
+// a.test = function() {
+//   console.log(this);
+// };
+// a.test();
+
+// x = 1
+// function a() {
+//   var x = 2
+//   var z = 3
+//   console.log("this.x in a: ", this.x)
+//   function b() {
+//     console.log("this.x in b: ", this.x)
+//     console.log("z in b: ", z)
+//   }
+//   var b = () => {
+//     console.log("this.x in b: ", this.x)
+//     console.log("z in b: ", z)
+//   }
+//   b()
+// }
+// var y = {
+//   x: 2,
+//   a: a
+// }
+// a()
+// y.a()
+function a() {
+  console.log(this === global)
+  function b() {
+    console.log(this === global)
+  }
+  b()
+}
+a()

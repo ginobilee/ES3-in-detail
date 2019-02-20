@@ -1,0 +1,43 @@
+<html>
+<head>
+    <style>
+        #searchBox{
+            position: relative;
+        }
+    </style> 
+</head>
+
+<body>
+  <div id='con' name='name'>this is con</div>
+  <script>
+    const log = console.log
+    function cbFactory(name) {
+      return function callback(mutationList, observer) {
+        mutationList.forEach((mutation) => {
+          switch(mutation.type) {
+            case 'attributes':
+              log('attribute change : ', name)
+              Promise.resolve().then(() => {
+                log('Promise: ', name)
+              })
+              break;
+          }
+        });
+      }
+    }
+
+    var targetNode = document.querySelector("#con");
+    var observerOptions = {
+      attributes: true,
+    }
+
+    var observer = new MutationObserver(cbFactory(1));
+    observer.observe(targetNode, observerOptions);
+
+    var observe2 = new MutationObserver(cbFactory(2))
+    observe2.observe(targetNode, observerOptions)
+
+    targetNode.attributes.removeNamedItem('name')
+  </script>
+</body>
+</html>
