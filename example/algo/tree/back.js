@@ -48,6 +48,44 @@ function backTraverse(tree) {
     }
   }
 }
+
+function back(node) {
+  const rightChecked = {},
+    stack = []
+  let c = node
+  while (1) {
+    if (!!c) {
+      stack.push(c)
+      c = c.left
+    } else {
+      if (isEmpty(stack)) {
+        break
+      } else {
+        const top = getTop(stack)
+        if (hasRightChecked(rightChecked, top)) {
+          // log
+          console.log(stack.pop().data)
+        } else {
+          setRightChecked(rightChecked, top)
+          c = top.right
+        }
+      }
+    }
+  }
+
+  function getTop(arr) {
+    return arr[arr.length - 1]
+  }
+  function isEmpty(arr) {
+    return arr.length === 0
+  }
+  function hasRightChecked(flags, ele) {
+    return !!flags[ele.data]
+  }
+  function setRightChecked(flags, ele) {
+    flags[ele.data] = true
+  }
+}
 // test
 var nodeA = new TNode(1)
 var node2 = new TNode(2)
@@ -63,4 +101,5 @@ var node7 = new TNode(7)
 node3.right = node6
 node6.right = node7
 backTraverse(nodeA)
+back(nodeA)
 // backTraverseWithRecursion(nodeA);
